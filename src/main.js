@@ -2,10 +2,17 @@ import Vue from 'vue'
 import App from './App.vue'
 import './registerServiceWorker'
 import router from './router/index'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+import { BootstrapVue } from 'bootstrap-vue';
+import store from './store'
 
 Vue.config.productionTip = false
 
-new Vue({
+Vue.use(BootstrapVue)
+Vue.use(store)
+
+export default new Vue({
   render: h => h(App),
-  router:router
+  router:router,
+  store,
 }).$mount('#main')

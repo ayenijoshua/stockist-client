@@ -3,11 +3,12 @@ import dashboard from '@/views/admin/dashboard'
 import security from '@/views/admin/security'
 import transactions from '@/views/admin/transactions'
 import settings from '@/views/admin/settings'
+import products from '@/views/admin/products'
 
 export default [
     
       {
-          path:'/',
+          path:'/admin',
           component:adminLayout,
           children:[
             {
@@ -29,6 +30,11 @@ export default [
                 path:'security',
                 name:'security',
                 component:security
+            },
+            {
+                path:'products',
+                name:'admin-products',
+                component:products
             },
           ]
       }

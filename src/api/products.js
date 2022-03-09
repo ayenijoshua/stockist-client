@@ -1,5 +1,5 @@
 import endPoints from "./endpoints"
-import {api as http} from './axios-config'
+import {http} from './axios-config'
 
 export default {
 
@@ -11,8 +11,8 @@ export default {
         return http().post(endPoints.products,data)
     },
 
-    update(id){
-        return http().put(`${endPoints.products}/${id}`)
+    update(id,data){
+        return http().put(`${endPoints.products}/${id}`,data)
     },
 
     show(id){

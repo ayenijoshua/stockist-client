@@ -38,6 +38,11 @@
                     </router-link>
                     </li>
                     <li class="treeview">
+                        <router-link :to="{name:'admin-products'}">
+                            <i class="icon icon-barometer2 blue-text s-18"></i><span class="blue-text">Products</span> 
+                        </router-link>
+                    </li>
+                    <li class="treeview">
                         <router-link :to="{name:'transactions'}">
                             <i class="icon icon-account_balance_wallet blue-text s-18"></i> <span class="blue-text">Transaction History</span>
                         </router-link>
