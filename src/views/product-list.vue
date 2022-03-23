@@ -1,5 +1,5 @@
 <template>
-    <div class="row">
+    <div class="row p-5">
         <div class="col-md-12">
             <div class="row my-3">
                 <!-- bar charts group -->
@@ -8,57 +8,18 @@
                         <div class="card-header bg-white">
                             <h4 class="blue-text"><strong class="font-weight-bold">Product List</strong></h4>
                         </div>
-                        <div class="card-body" style="overflow-x:auto;">
-                            <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Product Name</th>
-                                        <th scope="col">Product Price</th>
-                                        <th scope="col">Product Selection</th>
-                                        <th scope="col">Product Quantity</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>Lilong Noni Juice</td>
-                                        <td>₦13,000</td>
-                                        <td> &nbsp; &nbsp; &nbsp; &nbsp;<input type="checkbox" id="Lilong Noni Juice" name="Lilong Noni Juice" value="Lilong Noni Juice"></td>
-                                        <td><input class="form-control form-control-lg r-0" type="number" id="number" name="quantity" placeholder="Enter Quantity"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Lilong Kingman Pressed Candy</td>
-                                        <td>₦9,000</td>
-                                        <td> &nbsp; &nbsp; &nbsp; &nbsp;<input type="checkbox" id="Lilong Noni Juice" name="Lilong Noni Juice" value="Lilong Noni Juice"></td>
-                                        <td><input class="form-control form-control-lg r-0" type="number" id="number" name="quantity" placeholder="Enter Quantity"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Lilong Hydrogen Rich Water Flask</td>
-                                        <td>₦15,400</td>
-                                        <td> &nbsp; &nbsp; &nbsp; &nbsp;<input type="checkbox" id="Lilong Noni Juice" name="Lilong Noni Juice" value="Lilong Noni Juice"></td>
-                                        <td><input class="form-control form-control-lg r-0" type="number" id="number" name="quantity" placeholder="Enter Quantity"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Lilong Far Infrared Spectrum Energy</td>
-                                        <td>₦25,000</td>
-                                        <td> &nbsp; &nbsp; &nbsp; &nbsp;<input type="checkbox" id="Lilong Noni Juice" name="Lilong Noni Juice" value="Lilong Noni Juice"></td>
-                                        <td><input class="form-control form-control-lg r-0" type="number" id="number" name="quantity" placeholder="Enter Quantity"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Lilong Black Soybean Powder</td>
-                                        <td>₦14,700</td>
-                                        <td> &nbsp; &nbsp; &nbsp; &nbsp;<input type="checkbox" id="Lilong Noni Juice" name="Lilong Noni Juice" value="Lilong Noni Juice"></td>
-                                        <td><input class="form-control form-control-lg r-0" type="number" id="number" name="quantity" placeholder="Enter Quantity"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Lilong Noni Berry Enzyme</td>
-                                        <td>₦31,750</td>
-                                        <td> &nbsp; &nbsp; &nbsp; &nbsp;<input type="checkbox" id="Lilong Noni Juice" name="Lilong Noni Juice" value="Lilong Noni Juice"></td>
-                                        <td><input class="form-control form-control-lg r-0" type="number" id="number" name="quantity" placeholder="Enter Quantity"></td>
-                                    </tr>
-                                    </tbody>
-                            </table>
-
-                        </div>
+                        <b-skeleton-table v-if="loading"
+                            :rows="5"
+                            :columns="7"
+                            :table-props="{ bordered: true, striped: true }"
+                        ></b-skeleton-table>
+                        
+                        <template v-else>
+                            <div v-if="products.length == 0">
+                                <div class="alert alert-info">There are no products</div>
+                            </div>
+                            <products v-else :products="products" @add-to-cart="addToCart" @remove-from-cart="removeFromCart"/>
+                        </template>
                     </div>
                 </div>
             </div>
@@ -72,43 +33,134 @@
                         <div class="card-header bg-white">
                             <h4 class="blue-text"><strong class="font-weight-bold">Order Summary</strong></h4>
                         </div>
-                        <div class="card-body" style="overflow-x:auto;">
-                            <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Product Name</th>
-                                        <th scope="col">Product Price per 1</th>
-                                        <th scope="col">Product Quantity</th>
-                                        <th scope="col">Total Quantity Price</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>Lilong Noni Juice</td>
-                                        <td>₦13,000</td>
-                                        <td>3</td>
-                                        <td>₦39,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Lilong Black Soybean Powder</td>
-                                        <td>₦14,700</td>
-                                        <td>1</td>
-                                        <td>₦14,700</td>
-                                    </tr>
-                                    <tr>
-                                        <th colspan="10">Total Price</th>
-                                        <td>₦53,700</td>
-                                    </tr>
-                                    </tbody>
-                            </table>
-
-                        </div>
+                        <order-summary :order="orderData" />
                     </div>
                 </div>
             </div>
+            <button @click="checkOrder" type="button" class="btn btn-primary btn-lg  float-left">
+                <i class="icon icon-credit-card"></i> Submit Order
+            </button>
         </div>
 
-        <button type="button" class="btn btn-primary btn-lg  float-left"><i class="icon icon-credit-card"></i> Submit Order</button>	
-        <br>
+        <div class="row">
+            <div class="col-12 text-center">
+                <h4 class="font-weight-bold"> Disclaimer... </h4>
+                <p>Please ensure you pay to the bank before filling the order form as you would be required to enter your Proof of payment.</p>
+            </div>
+        </div>
+
+        <modal :modalId="'order'" :modalTitle="'Make Order'" modalSize='lg'>
+            <div class="row">
+                <div class="col-md-6">
+                    <bank-details/>
+                </div>
+                <div class="col-md-6">
+                    <order-form @order-form-submitted="submitOrder"/>
+                </div>
+            </div>
+        </modal>
     </div>
 </template>
+
+<script>
+import products from '@/components/products/products'
+import orderSummary from '@/components/orders/orderSummary'
+import orderForm from '@/components/orders/orderForm'
+import cart, {getCart} from '@/cart/index'
+
+import {mapState,mapActions,mapGetters} from 'vuex'
+import modal from '@/components/Modal'
+import bankDetails from '@/components/orders/bankDetails'
+import {notification} from '@/util/notification'
+export default {
+    components:{
+        products,
+        orderSummary,
+        modal,
+        bankDetails,
+        orderForm
+    },
+    data(){
+        return{
+            orderData: []
+        }
+    },
+    computed:{
+        ...mapState({
+            loading:state=>state.loading,
+            submittng:state=> state.submittng
+        }),
+
+        ...mapGetters('productStore',['products']),
+    },
+
+    created(){
+        if(this.products.length == 0){
+            this.getProducts()
+        }
+        this.orderData = getCart()
+        console.log(this.orderData)
+        let bdClass = document.getElementById('bdy').classList
+        bdClass.add('sidebar-collapse')
+    },
+
+    methods:{
+        ...mapActions('productStore',['getProducts']),
+        ...mapActions('orderStore',{
+            createOrder:'create'
+        }),
+        ...mapActions('userStore',{
+            createUser:'create'
+        }),
+
+        addToCart(data){
+            let product = {
+                id:data.product._id,
+                name:data.product.name,
+                price:data.product.price,
+                qty:data.qty,
+                totalPrice:data.qty * data.product.price,
+            }
+            cart.addItem(product)
+            this.orderData = getCart()
+        },
+
+        removeFromCart(product){
+            let prod = {
+                id:product._id,
+            }
+            cart.removeItem(prod)
+            this.orderData = getCart()
+        },
+
+        async submitOrder(userInfo){
+            try {
+                let user = await this.createUser(userInfo)
+                if(user.status == 200){
+                    this.orderData.userId = user.data._id
+                    let order = await this.createOrder(this.orderData)
+                    if(order.status == 200){
+                        cart.clearCart()
+                        this.orderData = getCart()
+                        setTimeout(()=>{
+                            this.$bvModal.hide('order')
+                        },2000)   
+                    }
+                }
+            } catch (error) {
+                console.log(error)
+                notification.error("An error occured while processing order")
+            }
+        },
+
+        checkOrder(){
+            if(this.orderData.products != undefined && this.orderData.products.length > 0){
+                this.$bvModal.show('order')
+            }else{
+                notification.error("Please select items to purchase")
+            }
+        }
+    }
+    
+}
+</script>

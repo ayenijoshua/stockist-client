@@ -34,13 +34,20 @@
         <div class="page has-sidebar-left">
             <div class="container">
                 <div class="invoice white shadow">
-                    <div class="row">
+                    <div class="row m-5">
                         <div class="col-12 text-center">
-                            <p> <img class="w-500px mb-4" src="assets/img/welcome.png" style="-webkit-filter: drop-shadow(3px 3px 3px #222); filter: drop-shadow(3px 3px 3px #222); max-width: 100%;" alt=""><br><strong class="font-weight-bold">To complete your Order,Please fill the form below and upload your Proof of payment for confirmation.</strong></p>
+                            <p> <img class="w-500px mb-4" src="assets/img/welcome.png" style="-webkit-filter: drop-shadow(3px 3px 3px #222); filter: drop-shadow(3px 3px 3px #222); max-width: 100%;" alt="">
+                                <br>
+                                <strong class="font-weight-bold">
+                                    To complete your Order, please select purchased products, 
+                                    submit your order, fill the form and upload your Proof of payment for confirmation.
+                                </strong>
+                            </p>
                         </div>
                     </div>
+                    <router-view/>
                 </div>
-                <router-view/>
+                
             </div>
         </div>
     </div>

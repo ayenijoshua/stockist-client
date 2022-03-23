@@ -1,0 +1,151 @@
+<template>
+    <div>
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th style="border:1px !important;">S/N</th>
+                <th>Name</th>
+                <th>ID No.</th>
+                <th>Phone No.</th>
+                <th>Email</th>
+                <th>Sponsor Name</th>                                   
+                <th>Date Of Order</th>
+                <th>View Order</th>
+                <th>Action</th>
+            </tr>    
+            <tr v-if="loading">
+                <td colspan="7">
+                    <b-skeleton-table
+                        :rows="5"
+                        :columns="7"
+                        :table-props="{ bordered: true, striped: true }"
+                    ></b-skeleton-table>
+                </td>
+            </tr> 
+            <template v-else>
+                <tr v-if="pendingOrders.length==0">
+                    <td colspan="8">
+                        There are no pending orders
+                    </td>
+                </tr>
+                <tr v-else v-for="order,i in pendingOrders" :key="i">
+                    <td>{{++i}}</td>
+                    <td>{{order.user.name}}</td>
+                    <td>LI9735262NG</td>
+                    <td>{{order.user.phone}}</td>
+                    <td>{{order.user.email}}</td>
+                    <td>{{order.user.sponsorName}}</td>
+                    <td>{{order.created_at}}</td>
+                    <td>
+                        <button type="submit" id="submit" class="btn btn-sm btn-primary" @click="setOrder(order)" v-b-modal.viewOrder>
+                            View Order
+                        </button>
+                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Approve/disapprove
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="position:relative">
+                                <a data-id="6"  class="dropdown-item approve" v-b-modal.approve @click="setOrder(order)">Approve</a>
+                                <a data-id="6"  class="dropdown-item" v-b-modal.disapprove @click="setOrder(order)">Decline</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            
+            </template>                                                                                                       
+        </table>  
+
+        <modal  modalId="viewOrder" modalTitle='Order Details' modalSize="lg">
+            <b-card v-if="!order">
+                <b-skeleton animation="throb" width="85%"></b-skeleton>
+                <b-skeleton animation="throb" width="55%"></b-skeleton>
+                <b-skeleton animation="throb" width="70%"></b-skeleton>
+            </b-card>
+            <order-summary v-else :order="order"/>
+        </modal>
+
+        <modal  modalId="approve" modalTitle='Approve Order'>
+            <b-card v-if="!order">
+                <b-skeleton animation="throb" width="85%"></b-skeleton>
+                <b-skeleton animation="throb" width="55%"></b-skeleton>
+                <b-skeleton animation="throb" width="70%"></b-skeleton>
+            </b-card>
+            <div class="alert alert-info">
+                Are you sure you want to approve?
+            </div>
+            <button class="btn btn-success" @click="approve()">Approve</button>
+        </modal>
+
+        <modal  modalId="disapprove" modalTitle='Disapprove Order'>
+            <b-card v-if="!order">
+                <b-skeleton animation="throb" width="85%"></b-skeleton>
+                <b-skeleton animation="throb" width="55%"></b-skeleton>
+                <b-skeleton animation="throb" width="70%"></b-skeleton>
+            </b-card>
+            <div class="alert alert-danger">
+                Are you sure you want to disapprove?
+            </div>
+            <button class="btn btn-danger" @click="disapprove()">Disapprove</button>
+        </modal>
+
+    </div>
+</template>
+
+<script>
+import {mapActions,mapState} from 'vuex'
+import Modal from '@/components/Modal'
+import orderSummary from '@/components/orders/orderSummary'
+    export default {
+        props:{
+            pendingOrders:{
+                type:Array,
+                required:true
+            }
+        },
+        data(){
+            return{
+                order:null
+            }
+        },
+        components:{
+            Modal,
+            orderSummary
+        },
+        computed:{
+            ...mapState({
+                loading:state=>state.loading
+            }),
+
+            //...mapGetters('orderStore',['pendingOrders'])
+        },
+
+        created(){
+            // if(this.pendingOrders.length==0){
+            //     this.getPending()
+            // }
+        },
+
+        methods:{
+            ...mapActions('orderStore',['getPending','approveOrder','disapproveOrder']),
+
+            setOrder(data){
+                this.order = data
+            },
+
+            async approve(){
+               const res = await this.approveOrder(this.order._id)
+               if(res.status==200){
+                   this.$bvModal.hide('approve')
+               }
+            },
+
+            async disapprove(){
+               const res = await this.disapproveOrder(this.order._id)
+               if(res.status==200){
+                   this.$bvModal.hide('disapprove')
+               }
+            }
+        }
+    }
+</script>

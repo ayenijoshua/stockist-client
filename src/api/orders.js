@@ -1,5 +1,5 @@
 import endPoints from "./endpoints"
-import {api as http} from './axios-config'
+import {http} from './axios-config'
 
 export default {
 
@@ -9,6 +9,14 @@ export default {
 
     create(data){
         return http().post(endPoints.orders,data)
+    },
+
+    approve(id){
+        return http().patch(`${endPoints.orders}/${id}/approve`)
+    },
+
+    disapprove(id){
+        return http().patch(`${endPoints.orders}/${id}/disapprove`)
     },
 
     update(id){
@@ -21,6 +29,19 @@ export default {
 
     delete(id){
         return http().delete(`${endPoints.orders}/${id}`)
-    }
+    },
+
+    total(){
+        return http().get(`${endPoints.orders}/total`)
+    },
+
+    ordersByStatus(status){
+        return http().get(`${endPoints.orders}/status/${status}`)
+    },
+
+    totalSales(){
+        return http().get(`${endPoints.orders}/totalSales`)
+    },
+
 
 }

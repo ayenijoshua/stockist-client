@@ -1,5 +1,5 @@
 <template>
-    <div id="">
+    <div id="app">
         <aside class="main-sidebar fixed offcanvas shadow" data-toggle='offcanvas'>
             <section class="sidebar">
                 <div class="w-80px mt-3 mb-3 ml-3">
@@ -45,6 +45,11 @@
                     <li class="treeview">
                         <router-link :to="{name:'transactions'}">
                             <i class="icon icon-account_balance_wallet blue-text s-18"></i> <span class="blue-text">Transaction History</span>
+                        </router-link>
+                    </li>
+                    <li class="treeview">
+                        <router-link :to="{name:'admin-banks'}">
+                            <i class="icon icon-account_balance_wallet blue-text s-18"></i> <span class="blue-text">Banks</span>
                         </router-link>
                     </li>
                     <li class="treeview"><router-link :to="{name:'settings'}">

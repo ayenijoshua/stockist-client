@@ -21,6 +21,10 @@ export default {
 
     delete(id){
         return http().delete(`${endPoints.products}/${id}`)
+    },
+
+    total(){
+        return http().get(`${endPoints.products}/total`)
     }
 
 }

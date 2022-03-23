@@ -1,15 +1,15 @@
-import api from '../../api/products'
+import api from '../../api/banks'
 import toastr from 'toastr'
 //import {commit} from 'vuex'
 
 export default {
 
-    async getProducts({commit}){
+    async getBanks({commit}){
         try {
             commit('loading',null,{root:true})
             const res = await api.all()
             if(res && res.status==200){
-                commit('products',res.data)
+                commit('banks',res.data)
             }else{
                 toastr.error(res.data.message)
             }
@@ -25,8 +25,8 @@ export default {
             commit('submitting',null,{root:true})
             res = await api.create(data)
             if(res.status==200){
-                toastr.success("Product created successfully")
-                commit('storeProduct',data)
+                toastr.success("bank created successfully")
+                commit('storeBank',data)
             }else{
                 toastr.error(res.data.message)
             }
@@ -41,8 +41,8 @@ export default {
             commit('submitting',null,{root:true})
             const res = await api.update(data.id,data.data)
             if(res.status == 200){
-                toastr.success('Product updated successfully') 
-                commit('updateProduct',res.data)
+                toastr.success('Bank updated successfully') 
+                commit('updateBank',res.data)
             }else{
                 toastr.error(res.data.message)
             }
@@ -57,8 +57,8 @@ export default {
             commit('submitting',null,{root:true})
             const res = await api.delete(id)
             if(res.status==200){
-                toastr.success('Product delete successfully')
-                commit('deleteProduct',id)
+                toastr.success('Bank delete successfully')
+                commit('deleteBank',id)
                 cb()
             }else{
                 toastr.error(res.data)
