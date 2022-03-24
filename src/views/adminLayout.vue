@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <ul class="sidebar-menu">
-                    <li class="treeview active"><router-link :to="{name:'dashboard'}">
+                    <li class="treeview active"><router-link :to="{name:'admin-dashboard'}">
                         <i class="icon icon-barometer2 blue-text s-18"></i><span class="blue-text">Dashboard</span> 
                     </router-link>
                     </li>
@@ -43,7 +43,7 @@
                         </router-link>
                     </li>
                     <li class="treeview">
-                        <router-link :to="{name:'transactions'}">
+                        <router-link :to="{name:'admin-transactions'}">
                             <i class="icon icon-account_balance_wallet blue-text s-18"></i> <span class="blue-text">Transaction History</span>
                         </router-link>
                     </li>
@@ -52,12 +52,12 @@
                             <i class="icon icon-account_balance_wallet blue-text s-18"></i> <span class="blue-text">Banks</span>
                         </router-link>
                     </li>
-                    <li class="treeview"><router-link :to="{name:'settings'}">
+                    <li class="treeview"><router-link :to="{name:'admin-settings'}">
                         <i class="icon icon-vcard blue-text s-18"></i>
-                        <span class="blue-text">System Settings</span>
+                        <span class="blue-text">Company Contact</span>
                     </router-link>
                     </li>
-                    <li class="treeview"><router-link :to="{name:'security'}">
+                    <li class="treeview"><router-link :to="{name:'admin-security'}">
                         <i class="icon icon-lock3 blue-text s-18"></i>
                         <span class="blue-text">Security</span>
                     </router-link>

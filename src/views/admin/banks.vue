@@ -79,7 +79,12 @@
         </modal>
 
         <modal :modalId="'deleteBank'" :modalTitle="'Delete bank'">
-            <delete-bank :bank="bank" @bank-delete-confirmed="deleteBank"/>
+            <b-card v-if="!bank">
+                <b-skeleton animation="throb" width="85%"></b-skeleton>
+                <b-skeleton animation="throb" width="55%"></b-skeleton>
+                <b-skeleton animation="throb" width="70%"></b-skeleton>
+            </b-card>
+            <delete-bank v-else :bank="bank" @bank-delete-confirmed="deleteBank"/>
         </modal>
         
     </div>
@@ -102,7 +107,8 @@ export default {
 
     data(){
         return{
-            bank:null
+            bank:null,
+           // rowKey:Math.random()
         }
     },
 
@@ -135,6 +141,7 @@ export default {
 
         setBank(bank){
             this.bank = bank
+            console.log('bank set'+bank._id)
         },
 
         updateBank(formData){
@@ -146,15 +153,30 @@ export default {
                 accountName:formData.get('accountName'),
                 accountNumber:formData.get('accountNumber')
             }
-            this.update({id:this.bank._id,data:bank})
-            this.$forceUpdate()
+            this.update({id:this.bank._id,data:bank}).then(res=>{
+                if(res.status==200){
+                    this.$bvModal.hide('editBank')
+                    this.bank = null
+                }
+            })
+            
         },
 
-        deleteBank(){
-            this.delete({id:this.bank._id, cb:()=>{
-                this.$bvModal.hide('deleteBank')
-            }})
-        }
+        deleteBank(bankId){
+            this.delete(bankId).then(res=>{
+                if(res.status==200){
+                    this.$bvModal.hide('deleteBank')
+                    this.bank = null
+                }
+            })
+        },
+
+        // setKey(id,rand=null){
+        //     if(!rand){
+        //         return id
+        //     }
+        //     return Math.random()
+        // }
     }
     
 }

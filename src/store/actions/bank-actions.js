@@ -47,23 +47,24 @@ export default {
                 toastr.error(res.data.message)
             }
             commit('submitted',null,{root:true})
+            return res
         } catch (error) {
             LogError(commit,error,'submitted')
         }
     },
 
-    async delete({commit},{id,cb}){
+    async delete({commit},id){
         try {
             commit('submitting',null,{root:true})
             const res = await api.delete(id)
             if(res.status==200){
                 toastr.success('Bank delete successfully')
                 commit('deleteBank',id)
-                cb()
             }else{
                 toastr.error(res.data)
             }
             commit('submitted',null,{root:true})
+            return res
         } catch (error) {
             LogError(commit,error,'submitted')
         }

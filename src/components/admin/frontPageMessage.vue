@@ -3,12 +3,12 @@
         <form @submit.prevent="submit()">
             <div class="form-row">
                 <div class="col-md-12 mb-3">
-                    <input type="text" class="form-control" v-model="form.subject" id="validationDefault03" placeholder="Subject" required>
+                    <input type="text" class="form-control" v-model="form.subject"  placeholder="Subject" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-12 mb-3">
-                    <textarea type="text" v-model="form.message" class="form-control" id="validationDefault03" placeholder="Message" required></textarea>
+                    <textarea type="text" v-model="form.message" class="form-control" placeholder="Message" required></textarea>
                 </div>
             </div>
             <div class="form-row">
@@ -67,7 +67,11 @@ export default {
     methods:{
         ...mapActions('frontPageMessageStore',['create','getMessage']),
         submit(){
-            this.create(this.form)
+            this.create(this.form).then(res=>{
+                if(res.status==200){
+                    this.form = this.message
+                }
+            })
         }
     }
 

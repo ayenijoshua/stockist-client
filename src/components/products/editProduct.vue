@@ -12,7 +12,7 @@
                             <div class="form-group">
                                 <label class="col-md-12">Product Name</label>
                                 <div class="col-md-12">
-                                <input type="text" name="name" :value="product.name" class="form-control form-control-line">
+                                <input type="text" name="name" required :value="product.name" class="form-control form-control-line">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -20,35 +20,36 @@
                                     <img :src="uploadUrl+product.imageName" width="10%">
                                 </div>
                                 <label for="formFileMultiple" class="form-label">Upload Product Image</label>
-                                <input class="form-control" name="image" type="file" id="formFile" />
+                                <input class="form-control" accept="image/*" name="image" type="file" id="formFile" />
                             </div>
                             <div class="form-group">
                                 <label class="col-md-12">Product Price</label>
                                 <div class="col-md-12">
-                                <input type="text" name="price" :value="product.price" class="form-control form-control-line">
+                                <input type="text" name="price" required :value="product.price" class="form-control form-control-line">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-12">Quantity</label>
                                 <div class="col-md-12">
-                                <input type="text" name="quantity" :value="product.quantity" class="form-control form-control-line">
+                                <input type="text" required name="quantity" :value="product.quantity" class="form-control form-control-line">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-12">Product Description Tittle</label>
                                 <div class="col-md-12">
-                                <input type="text" name="title" :value="product.title" class="form-control form-control-line">
+                                <input type="text" name="title" required :value="product.title" class="form-control form-control-line">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="example-email" class="col-md-12">Description</label>
                                 <div class="col-md-12">
-                                <textarea name="description" :value="product.description" class="form-control form-control-line"></textarea>
+                                <textarea name="description" required :value="product.description" class="form-control form-control-line"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <button class="btn btn-primary" id="add-incentives">Update Product Details</button>
+                                    <span class="btn btn-primary" v-if="submitting">...</span>
+                                    <button v-else class="btn btn-primary" id="add-incentives">Update Product Details</button>
                                 </div>
                             </div>
                         </form>

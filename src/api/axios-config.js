@@ -12,12 +12,11 @@ const http_client = axios.create({
 let api = function() {
     let token = localStorage.getItem("stockist-token");
     if (token) {
-        http_client.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        http_client.defaults.headers.common["auth-token"] = `${token}`;
     }
     return http_client;
 };
-//http_client.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-//api.defaults.withCredentials = true;
+
 api().interceptors.response.use(
     response => response,
     error => {

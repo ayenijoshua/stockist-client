@@ -7,6 +7,11 @@ export default [
         component:layout,
         children:[
             {
+                path:'',
+                name:'products',
+                component:productList
+            },
+            {
                 path:'products',
                 name:'products',
                 component:productList

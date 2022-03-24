@@ -15,30 +15,30 @@
                                         Lilong Contact Details
                                     </div>
                                     <div class="card-body">
-                                        <form class="form-horizontal form-materia" id="add-bank-details-form" method="POST" action="/admin/addBankDetails">
-                                            <input type="hidden" name="_token" value="yKOJ6VLPGcVBL5A0Lvl5MAKrWsTSvmSJRYk89DP3">
+                                        <form class="form-horizontal form-materia" id="add-bank-details-form" method="POST" @submit.prevent="submit()">
                                                 <div class="form-group">
                                                     <label for="example-email" class="col-md-12">Email</label>
                                                     <div class="col-md-12">
-                                                        <input name="email"  type="email" class="form-control form-control-line">
+                                                        <input v-model="form.email"  type="email" class="form-control form-control-line">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="example-email" class="col-md-12">Phone Number</label>
                                                     <div class="col-md-12">
-                                                        <input name="bank_account_number"   type="number" class="form-control form-control-line">
+                                                        <input v-model="form.phone"   type="number" class="form-control form-control-line">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="example-email" class="col-md-12">Address</label>
                                                     <div class="col-md-12">
-                                                    <textarea name="description" class="form-control form-control-line"></textarea>
+                                                    <textarea v-model="form.address" class="form-control form-control-line"></textarea>
                                                     </div>
                                                 </div>
                                                 
                                                 <div class="form-group">
                                                     <div class="col-sm-12">
-                                                        <button class="btn btn-primary" id="add-bank-details">Update Company Details</button>
+                                                        <span v-if="submitting" class="btn btn-primary">...</span>
+                                                        <button v-else class="btn btn-primary" id="add-bank-details">Update Company Details</button>
                                                     </div>
                                                 </div>
                                         </form>    
@@ -54,7 +54,42 @@
 </template>
 
 <script>
+import {mapState,mapActions,mapGetters} from 'vuex'
 export default {
-    
+    data(){
+        return{
+            form:{
+                email:null,
+                phone:null,
+                address:null
+            }
+        }
+    },
+
+    computed:{
+        ...mapState({
+            loading:state=>state.loading,
+            submitting:state=>state.submitting
+        }),
+        ...mapGetters('companyContactStore',['companyContact'])
+    },
+
+    created(){
+        if(Object.entries(this.companyContact).length == 0 || this.form.email==null){
+            this.getContact().then(res=>{
+                if(res.status==200){
+                    this.form = res.data
+                }
+            })
+        }
+    },
+
+    methods:{
+        ...mapActions('companyContactStore',['getContact','create']),
+
+        submit(){
+            this.create(this.form)
+        }
+    }
 }
 </script>

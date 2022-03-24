@@ -12,40 +12,41 @@
                             <div class="form-group">
                                 <label class="col-md-12">Product Name</label>
                                 <div class="col-md-12">
-                                <input type="text" name="name" class="form-control form-control-line">
+                                <input type="text" name="name" required class="form-control form-control-line">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="formFileMultiple" class="form-label">Upload Product Image</label>
-                                <input class="form-control" name="image" type="file" id="formFile" />
+                                <input class="form-control" required name="image" accept="image/*" type="file" id="formFile" />
                             </div>
                             <div class="form-group">
                                 <label class="col-md-12">Product Price</label>
                                 <div class="col-md-12">
-                                <input type="text" name="price" class="form-control form-control-line">
+                                <input type="text" name="price" required class="form-control form-control-line">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-12">Quantity</label>
                                 <div class="col-md-12">
-                                <input type="text" name="quantity" class="form-control form-control-line">
+                                <input type="text" name="quantity" required class="form-control form-control-line">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-12">Product Description Tittle</label>
                                 <div class="col-md-12">
-                                <input type="text" name="title" class="form-control form-control-line">
+                                <input type="text" name="title" required class="form-control form-control-line">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="example-email" class="col-md-12">Description</label>
                                 <div class="col-md-12">
-                                <textarea name="description" class="form-control form-control-line"></textarea>
+                                <textarea name="description" required class="form-control form-control-line"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <button class="btn btn-primary" id="add-incentives">Add Product Details</button>
+                                    <span class="btn btn-primary" v-if="submitting">...</span>
+                                    <button v-else class="btn btn-primary" id="add-incentives">Add Product Details</button>
                                 </div>
                             </div>
                         </form>

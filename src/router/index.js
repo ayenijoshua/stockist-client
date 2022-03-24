@@ -12,6 +12,12 @@ const routes = [
     ...adminRouter
 ]
 
+// routes.forEach((route)=>{
+//     if(route.meta.requiredAuth){
+
+//     }
+// })
+
 const router = new VueRouter({
     mode:'history',
     routes:routes

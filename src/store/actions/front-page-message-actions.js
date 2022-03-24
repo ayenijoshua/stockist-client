@@ -9,6 +9,7 @@ export default {
             const res = await api.create(data)
             processResponse(res,null,null,'settings submitted successfully')
             commit('submitted',null,{root:true})
+            return res
         } catch (error) {
             LogError(commit,error,'submitted')
         }

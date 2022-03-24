@@ -127,7 +127,7 @@ export default {
         ...mapGetters('productStore',['products']),
 
         apiImageUrl(){
-            return process.env.VUE_APP_API_UPLOADS+'/products/'
+            return process.env.VUE_APP_PRODUCT_UPLOADS+'/'
         }
     },
 
@@ -151,14 +151,21 @@ export default {
             if(!this.product){
                 notification.error("product not initialized")
             }
-            this.update({id:this.product._id,data:formData})
-            this.$forceUpdate()
+            this.update({id:this.product._id,data:formData}).then(res=>{
+                if(res.status == 200){
+                    this.$bvModal.hide('editProduct')
+                    this.product = null
+                }
+            })
         },
 
-        deleteProduct(){
-            this.delete({id:this.product._id, cb:()=>{
-                this.$bvModal.hide('deleteProduct')
-            }})
+        deleteProduct(id){
+            this.delete(id).then(res=>{
+                if(res.status == 200){
+                    this.$bvModal.hide('deleteProduct')
+                    this.product = null
+                }
+            })
         }
     }
     

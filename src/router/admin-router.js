@@ -11,25 +11,34 @@ export default [
       {
           path:'/admin',
           component:adminLayout,
+          meta:{
+            isAdmin:true,
+            requiresAuth:true
+          },
           children:[
             {
-                path:'dashboard',
+                path:'',
                 name:'dashboard',
                 component:dashboard
             },
             {
+                path:'dashboard',
+                name:'admin-dashboard',
+                component:dashboard
+            },
+            {
                 path:'transactions',
-                name:'transactions',
+                name:'admin-transactions',
                 component:transactions
             },
             {
                 path:'settings',
-                name:'settings',
+                name:'admin-settings',
                 component:settings
             },
             {
                 path:'security',
-                name:'security',
+                name:'admin-security',
                 component:security
             },
             {
@@ -41,6 +50,11 @@ export default [
                 path:'banks',
                 name:'admin-banks',
                 component:banks
+            },
+            {
+                path:'*',
+                name:'admin-dashboard',
+                component:dashboard
             },
           ]
       }

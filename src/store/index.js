@@ -5,6 +5,8 @@ import orderStore from "./order-store";
 import userStore from "./user-store";
 import frontPageMessageStore from "./front-page-message-store"
 import bankStore from "./banks-store";
+import companyContactStore from "./company-contact-store";
+import authStore from "./auth-store";
 
 Vue.use(Vuex);
 
@@ -37,6 +39,8 @@ export default new Vuex.Store({
         orderStore,
         userStore,
         frontPageMessageStore,
-        bankStore
+        bankStore,
+        companyContactStore,
+        authStore
     }
 })
