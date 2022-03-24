@@ -62,7 +62,14 @@
                 <b-skeleton animation="throb" width="55%"></b-skeleton>
                 <b-skeleton animation="throb" width="70%"></b-skeleton>
             </b-card>
-            <order-summary v-else :order="order"/>
+            <div v-else class="row">
+                <div class="col-md-6">
+                    <order-summary  :order="order"/>
+                </div>
+                <div class="col-md-6">
+                    <img :src="apiImageUrl + order.pop" class="img-responsive" width="100%" />
+                </div>
+            </div>
         </modal>
 
         <modal  modalId="approve" modalTitle='Approve Order'>
@@ -71,10 +78,12 @@
                 <b-skeleton animation="throb" width="55%"></b-skeleton>
                 <b-skeleton animation="throb" width="70%"></b-skeleton>
             </b-card>
-            <div class="alert alert-info">
-                Are you sure you want to approve?
-            </div>
-            <button class="btn btn-success" @click="approve()">Approve</button>
+            <template v-else>
+                <div class="alert alert-info">
+                    Are you sure you want to approve?
+                </div>
+                <button class="btn btn-success" @click="approve()">Approve</button>
+            </template>
         </modal>
 
         <modal  modalId="disapprove" modalTitle='Disapprove Order'>
@@ -83,10 +92,12 @@
                 <b-skeleton animation="throb" width="55%"></b-skeleton>
                 <b-skeleton animation="throb" width="70%"></b-skeleton>
             </b-card>
-            <div class="alert alert-danger">
-                Are you sure you want to disapprove?
-            </div>
-            <button class="btn btn-danger" @click="disapprove()">Disapprove</button>
+            <template v-else>
+                <div class="alert alert-danger">
+                    Are you sure you want to disapprove?
+                </div>
+                <button class="btn btn-danger" @click="disapprove()">Disapprove</button>
+            </template>
         </modal>
 
     </div>
@@ -116,6 +127,10 @@ import orderSummary from '@/components/orders/orderSummary'
             ...mapState({
                 loading:state=>state.loading
             }),
+
+            apiImageUrl(){
+                return process.env.VUE_APP_POP_UPLOAD+'/'
+            }
 
             //...mapGetters('orderStore',['pendingOrders'])
         },
