@@ -1,6 +1,6 @@
 <template>
     <div>
-        <search-transaction @search="setSearchResult"/>
+        <search-transaction @get-specific-orders="getSpecificOrder" @search="setSearchResult"/>
 
         <div class="row">
             <div class="col-md-9">
@@ -22,7 +22,9 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="home" role="tabpanel">
                         <div class="table-responsive" style="">
-                            <transaction-history :orders="orders" />     
+                            <transaction-history v-if="showAllOrders" :orders="orders" />
+                            <transaction-history v-if="showPendingOrders" :orders="pendingOrders" />
+                            <transaction-history v-if="showApprovedOrders" :orders="approvedOrders" />     
                         </div> 
                     </div>
                 </div>
@@ -44,7 +46,13 @@ export default {
     },
     data(){
             return{
-                order:null
+                order:null,
+                specificOrder:null,
+                showAllOrders:true,
+                showPendingOrders:false,
+                showDeliveredOders:false,
+                showRejectedOrders:false,
+                showApprovedOrders:false,
             }
         },
         computed:{
@@ -52,25 +60,58 @@ export default {
                 loading:state=>state.loading
             }),
 
-            ...mapGetters('orderStore',['orders'])
+            ...mapGetters('orderStore',['orders','pendingOrders','approvedOrders'])
         },
 
         created(){
             if(this.orders.length==0){
                 this.getOrders()
+                this.showAllOrders = true
             }
         },
 
         methods:{
-            ...mapActions('orderStore',['getOrders']),
+            ...mapActions('orderStore',['getOrders','getPending','getApproved','getDisapproved','searchOrder']),
 
             setOrder(data){
                 this.order = data
             },
 
             setSearchResult(data){
-                this.orders = data
+                //this.orders = data
+                this.searchOrder(data)
+            },
+
+            getSpecificOrder(orderType){
+                switch (orderType) {
+                    case 'pending':
+                        this.getPending()
+                        this.showPendingOrders = true
+                        this.showAllOrders = false
+                        this.showApprovedOrders = false
+                        this.hideOtherOrders(['showAllOrders','showApprovedOrders','showRejectedOrders'])
+                        break;
+                    case 'approved':
+                        this.getApproved()
+                        this.showPendingOrders = false
+                        this.showAllOrders = false
+                        this.showApprovedOrders = true
+                        this.hideOtherOrders(['showAllOrders','showPendingOrders','showRejectedOrders'])
+                        break;
+                    default:
+                        break;
+                }
+            },
+
+            hideOtherOrders(orderTypes){
+                var that = this
+                orderTypes.forEach(element => {
+                    that.element = false
+                    element == false
+                });
             }
+
+
         }
 }
 </script>

@@ -127,7 +127,7 @@ export default {
         ...mapGetters('productStore',['products']),
 
         apiImageUrl(){
-            return process.env.VUE_APP_PRODUCT_UPLOADS+'/'
+            return process.env.VUE_APP_PRODUCTS_UPLOAD+'/'
         }
     },
 

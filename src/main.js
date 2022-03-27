@@ -5,6 +5,10 @@ import router from './router/index'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { BootstrapVue } from 'bootstrap-vue';
 import store from './store'
+// import Chartkick from 'vue-chartkick'
+// import {Chart} from 'chart.js'
+
+//Vue.use(Chartkick.use(Chart))
 
 Vue.config.productionTip = false
 

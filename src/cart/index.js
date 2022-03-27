@@ -58,7 +58,7 @@ export default {
         var productExists = false;
         for(let i=0; i<cart.products.length; i++){
             if(cart.products[i].id == product.id){
-                cart.products[i].qty += Number(product.qty)
+                cart.products[i].qty = Number(cart.products[i].qty) + Number(product.qty)
                 cart.products[i].totalPrice = cart.products[i].qty * cart.products[i].price
                 productExists = true
                 break
@@ -79,7 +79,6 @@ export default {
         const cart = getCart()
         for(let i=0; i<cart.products.length; i++){
             if(cart.products[i].id == product.id){
-                alert()
                 cart.products.splice(i,1)
                 break
             }

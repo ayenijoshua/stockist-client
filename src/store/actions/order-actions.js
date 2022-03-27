@@ -1,7 +1,6 @@
 import api from '@/api/orders'
 import {notification} from '@/util/notification'
 
-
 export default{
     async getOrders({commit}){
         try {
@@ -113,6 +112,32 @@ export default{
             commit('loading',null,{root:true})
             const res = await api.ordersByStatus('disapproved')
             processResponse(commit,res,'disapprovedOrders')
+            commit('loaded',null,{root:true})
+        } catch (error) {
+            LogError(commit,error,'loaded')
+        }
+    },
+
+    async searchOrder({commit},data){
+        try {
+            commit('submitting',null,{root:true})
+            const res = await api.search(data)
+            if(res.status == 200){
+                data.orderType=='all' ? commit('orders',res.data) : commit(data.orderType+'Orders',res.data)
+            }else{
+                notification.error(res.data.message)
+            }
+            commit('submitted',null,{root:true})
+        } catch (error) {
+            LogError(commit,error,'submitted')
+        }
+    },
+
+    async getGraphData({commit}){
+        try {
+            commit('loading',null,{root:true})
+            const res = await api.graph()
+            processResponse(commit,res,'ordersGraph')
             commit('loaded',null,{root:true})
         } catch (error) {
             LogError(commit,error,'loaded')

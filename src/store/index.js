@@ -15,7 +15,7 @@ export default new Vuex.Store({
         return{
             submitting:false,
             loading:false,
-            user:null
+            activeMenu:null
         }
     },
 

@@ -3,7 +3,7 @@
         <aside class="main-sidebar fixed offcanvas shadow" data-toggle='offcanvas'>
             <section class="sidebar">
                 <div class="w-80px mt-3 mb-3 ml-3">
-                    <img src="assets/img/basic/logo1a.png" alt="">
+                    <img src="/assets/img/basic/logo1a.png" alt="">
                 </div>
                 <div class="relative">
                     <a data-toggle="collapse" href="#userSettingsCollapse" role="button" aria-expanded="false"
@@ -13,7 +13,7 @@
                     <div class="user-panel p-3 light mb-2">
                         <div>
                             <div class="float-left image">
-                                <img class="user_avatar" src="assets/img/dummy/u2.png" alt="User Image">
+                                <img class="user_avatar" src="/assets/img/dummy/u2.png" alt="User Image">
                             </div>
                             <div class="float-left info">
                                 <h6 class="font-weight-light mt-2 mb-1">LilongHeroes</h6>
@@ -24,7 +24,8 @@
                         <div class="collapse multi-collapse" id="userSettingsCollapse">
                             <div class="list-group mt-3 shadow">
                                 <a href="#" class="list-group-item list-group-item-action ">
-                                    <i class="mr-2 icon icon-sign-out text-blue"></i><span class="blue-text">Logout</span>
+                                    <i class="mr-2 icon icon-sign-out text-blue"></i>
+                                    <span class="blue-text" v-b-modal.logOut>Logout</span>
                                 </a>
                                 <a href="#" class="list-group-item list-group-item-action"><i
                                         class="mr-2 icon-key5 text-blue"></i><span class="blue-text">Change Password</span></a>
@@ -33,34 +34,37 @@
                     </div>
                 </div>
                 <ul class="sidebar-menu">
-                    <li class="treeview active"><router-link :to="{name:'admin-dashboard'}">
-                        <i class="icon icon-barometer2 blue-text s-18"></i><span class="blue-text">Dashboard</span> 
-                    </router-link>
+                    <li :class="['treeview', activeMenu()=='admin-dashboard' ? 'active' : '']" @click="setMenu('admin-dashboard')">
+                        <router-link :to="{name:'admin-dashboard'}" >
+                            <i class="icon icon-barometer2 blue-text s-18"></i><span class="blue-text">Dashboard</span> 
+                        </router-link>
                     </li>
-                    <li class="treeview">
-                        <router-link :to="{name:'admin-products'}">
+                    <li :class="['treeview', activeMenu()=='admin-products' ? 'active' : '']" @click="setMenu('admin-products')">
+                        <router-link :to="{name:'admin-products'}" >
                             <i class="icon icon-barometer2 blue-text s-18"></i><span class="blue-text">Products</span> 
                         </router-link>
                     </li>
-                    <li class="treeview">
-                        <router-link :to="{name:'admin-transactions'}">
+                    <li :class="['treeview', activeMenu()=='admin-transactions' ? 'active' : '']" @click="setMenu('admin-transactions')">
+                        <router-link :to="{name:'admin-transactions'}" >
                             <i class="icon icon-account_balance_wallet blue-text s-18"></i> <span class="blue-text">Transaction History</span>
                         </router-link>
                     </li>
-                    <li class="treeview">
-                        <router-link :to="{name:'admin-banks'}">
+                    <li :class="['treeview', activeMenu()=='admin-banks' ? 'active' : '']" @click="setMenu('admin-banks')">
+                        <router-link :to="{name:'admin-banks'}" >
                             <i class="icon icon-account_balance_wallet blue-text s-18"></i> <span class="blue-text">Banks</span>
                         </router-link>
                     </li>
-                    <li class="treeview"><router-link :to="{name:'admin-settings'}">
-                        <i class="icon icon-vcard blue-text s-18"></i>
-                        <span class="blue-text">Company Contact</span>
-                    </router-link>
+                    <li :class="['treeview', activeMenu()=='admin-settings' ? 'active' : '']" @click="setMenu('admin-settings')">
+                        <router-link :to="{name:'admin-settings'}" >
+                            <i class="icon icon-vcard blue-text s-18"></i>
+                            <span class="blue-text">Company Contact</span>
+                        </router-link>
                     </li>
-                    <li class="treeview"><router-link :to="{name:'admin-security'}">
-                        <i class="icon icon-lock3 blue-text s-18"></i>
-                        <span class="blue-text">Security</span>
-                    </router-link>
+                    <li :class="['treeview', activeMenu()=='admin-security' ? 'active' : '']" @click="setMenu('admin-security')">
+                        <router-link :to="{name:'admin-security'}" >
+                            <i class="icon icon-lock3 blue-text s-18"></i>
+                            <span class="blue-text">Security</span>
+                        </router-link>
                     </li>
                 </ul>
             </section>
@@ -98,7 +102,7 @@
                         <!-- Messages-->
                         <li class="dropdown custom-dropdown messages-menu">
                             <a class="nav-link ml-2" data-toggle="control-sidebar">
-                                <i class="icon icon-sign-out" style="color:#03a9f4;" ></i>
+                                <i class="icon icon-sign-out" style="color:#03a9f4;" v-b-modal.logOut></i>
                             </a>
                         </li>
                     </ul>
@@ -113,23 +117,43 @@
 
         <div class="control-sidebar-bg shadow white fixed"></div>
 
-         <!-- <div class="container-fluid  my-3">
-            <div class="">
-                <div class="card">
-                    <div class="card-header white">
-                        <h6> YOUR ACTIVITIES </h6>
-                    </div>
-                </div>
-
-                
-
-            </div>
-         </div> -->
+         <modal :modalId="'logOut'" :modalSize="'sm'" :modalTitle="'Log out'">
+             <div class="alert alert-danger">
+                 Are you sure you want to log out?
+                 <button class="btn btn-danger" @click="logOut()">Yes</button>
+             </div>
+         </modal>
     </div>
 </template>
 
 <script>
+import modal from '@/components/Modal'
+import {mapActions} from 'vuex'
 export default {
+    components:{
+        modal
+    },
+
+    computed:{
+        
+    },
+
+    created(){
+        const pageArr = location.pathname.split('/')
+        let activeMenu = pageArr[1]+'-'+pageArr[2]
+       this.setMenu(activeMenu)
+    },
+
+    methods:{
+        ...mapActions('authStore',['logOut']),
+
+        setMenu(menu){
+            this.$store.state.activeMenu = menu
+        },
+        activeMenu(){
+            return this.$store.state.activeMenu
+        }
+    }
     
 }
 </script>

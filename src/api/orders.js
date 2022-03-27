@@ -43,5 +43,13 @@ export default {
         return http().get(`${endPoints.orders}/totalSales`)
     },
 
+    search(data){
+        return http().post(`${endPoints.orders}/search`,data)
+    },
+
+    graph(){
+        return http().get(`${endPoints.orders}/graph`)
+    },
+
 
 }

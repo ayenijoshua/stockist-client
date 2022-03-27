@@ -7,5 +7,5 @@ export default  {
     users: `${apiVersion}/users`,
     frontPageMessage: `${apiVersion}/front-page-message`,
     banks: `${apiVersion}/banks`,
-    companyContact: `${apiVersion}/company-contact`
+    companyContact: `${apiVersion}/company-contact`,
 };

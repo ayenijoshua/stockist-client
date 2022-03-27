@@ -24,15 +24,15 @@ export default {
     },
 
     pendingOrders(state,data){
-        state.pendingOrders.push(...data)
+        state.pendingOrders = data
     },
 
     approvedOrders(state,data){
-        state.approvedOrders.push(...data)
+        state.approvedOrders = data
     },
 
     disapprovedOrders(state,data){
-        state.disapprovedOrders.push(...data)
+        state.disapprovedOrders = data
     },
 
     orderApproved(state,id){
@@ -51,5 +51,9 @@ export default {
         }else{
             console.log('order not found')
         }
+    },
+
+    ordersGraph(state,data){
+        state.ordersGraph = data
     }
 }

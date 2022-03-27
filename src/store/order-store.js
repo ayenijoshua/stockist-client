@@ -11,7 +11,8 @@ export default{
             totalSales:null,
             pendingOrders:[],
             approvedOrders:[],
-            disapprovedOrders:[]
+            disapprovedOrders:[],
+            ordersGraph:[]
         }
     },
     actions:{

@@ -44,7 +44,11 @@ export default [
             {
                 path:'products',
                 name:'admin-products',
-                component:products
+                component:products,
+                meta:{
+                    isAdmin:true,
+                    requiresAuth:true
+                  },
             },
             {
                 path:'banks',

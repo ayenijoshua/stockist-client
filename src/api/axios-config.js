@@ -21,7 +21,7 @@ api().interceptors.response.use(
     response => response,
     error => {
         if (error.response.status === 401 || error.response.status === 403) {
-            vm.$store.dispatch("authStore/logout");
+            vm.$store.dispatch("authStore/logOut");
         }
         return Promise.reject(error);
     }

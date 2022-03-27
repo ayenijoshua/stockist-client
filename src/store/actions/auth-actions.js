@@ -4,10 +4,10 @@ import vm from '../../main'
 
 export default {
 
-    async login({commit}){
+    async login({commit},data){
         try {
             commit('submitting',null,{root:true})
-            const res = await api.login()
+            const res = await api.login(data)
             if(res && res.status==200){
                 commit('authUser',res.data)
                 if(res.data.isAdmin){
@@ -54,6 +54,17 @@ export default {
             commit('submitted',null,{root:true})
         } catch (error) {
             LogError(commit,error,'submitted')
+        }
+    },
+
+    async getUser({commit}){
+        try {
+            commit('loading',null,{root:true})
+            const res = api.user()
+            commit('authUser',res.data)
+            commit('loaded',null,{root:true})
+        } catch (error) {
+            LogError(commit,error,'loaded')
         }
     }
 }

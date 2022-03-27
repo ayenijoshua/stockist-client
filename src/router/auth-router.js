@@ -4,6 +4,8 @@ export default [
     {
         name:'login',
         path:'/login',
-        component:login
+        component:login,
+        isAdmin:false,
+        requiresAuth:false,
     }
 ]

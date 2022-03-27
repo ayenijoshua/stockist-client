@@ -5,6 +5,8 @@ export default [
     {
         path:'/',
         component:layout,
+        isAdmin:false,
+        requiresAuth:false,
         children:[
             {
                 path:'',

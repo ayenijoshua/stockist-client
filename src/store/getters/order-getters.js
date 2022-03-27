@@ -29,5 +29,9 @@ export default {
 
     disapprovedOrders(state){
         return state.disapprovedOrders
+    },
+
+    ordersGraph(state){
+        return state.ordersGraph
     }
 }

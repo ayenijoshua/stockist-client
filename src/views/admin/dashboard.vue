@@ -11,7 +11,7 @@
         </div>
 			<!--Style End 3-->
 			
-        <div class="d-flex row row-eq-height my-3">
+        <!-- <div class="d-flex row row-eq-height my-3">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header white">
@@ -33,8 +33,10 @@
                             <div class="tab-pane animated fadeInRightShort show active" id="v-pills-w1-tab1" role="tabpanel" aria-labelledby="v-pills-w1-tab1">
                                 <div class="row p-3">
                                     <div class="col-md-12">
-                                    
-                                    
+                                        <template v-if="loading">
+                                            ...
+                                        </template>
+                                        <line-chart v-else :data="{'2017-01-01': 11, '2017-01-02': 6}"></line-chart>
                                     </div>
                                 </div>
                             </div>
@@ -42,7 +44,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 			
         <div class="d-flex row row-eq-height my-3">
             <div class="col-md-12">
@@ -151,7 +153,7 @@ export default {
             loading:state=>state.loading
         }),
         ...mapGetters('userStore',['totalUsers']),
-        ...mapGetters('orderStore',['totalOrders','pendingOrders'])
+        ...mapGetters('orderStore',['totalOrders','pendingOrders','ordersGraph'])
     },
 
     created(){
@@ -166,11 +168,15 @@ export default {
         if(this.pendingOrders.length==0){
             this.getPending()
         }
+
+        if(this.ordersGraph.length==0){
+            this.getGraphData()
+        }
     },
 
     methods:{
         ...mapActions('userStore',['getTotalUsers']),
-        ...mapActions('orderStore',['getTotalOrders','getPending'])
+        ...mapActions('orderStore',['getTotalOrders','getPending','getGraphData'])
     }
 }
 </script>

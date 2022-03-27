@@ -12,8 +12,13 @@
                 <th>Order Status</th>                                                        
                 <th>Date Of Order</th>
                 <th>View Order</th>
-            </tr>                                                                                                          
-            <tr v-for="order,i in orders" :key="i">
+            </tr> 
+            <tr v-if="orders.length == 0">
+                <td colspan="10">
+                    <p class="text-center">Orders not found</p>
+                </td>
+            </tr>                                                                                                         
+            <tr v-else v-for="order,i in orders" :key="i">
                 <td>{{++i}}</td>
                 <td>{{order.user.name}}</td>
                 <td>{{order.user.IdNumber}}</td>
