@@ -3,7 +3,7 @@
         <div class="card ">
             <div class="card-body">
                 <div class="card-header">
-                    <h3>Fill Order Form</h3>
+                    <h3>Order Form</h3>
                 </div>
                 <form enctype="multipart/form-data" id="order-form" @submit.prevent="submit()">                
                     <div class="form-row">

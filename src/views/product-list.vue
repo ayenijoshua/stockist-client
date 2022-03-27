@@ -44,13 +44,26 @@
 
         <modal :modalId="'order'" :modalTitle="'Make Order'" modalSize='lg'>
             <div class="row">
-                <div class="col-md-6">
-                    <bank-details/>
-                </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <order-form @order-form-submitted="submitOrder"/>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p><br><strong class="font-weight-bold">Copy The Account Details Below To make Your Payment.</strong></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <template v-if="!banks">
+                        ...Loading banks...
+                    </template>
+                    <bank-details v-else :banks="banks"/>
+                </div>
+            </div>
+
             <br>
             <div class="row">
                 <div class="col-12 text-center">
@@ -82,7 +95,7 @@ export default {
     },
     data(){
         return{
-            orderData: []
+            orderData: {}
         }
     },
     computed:{
@@ -91,12 +104,16 @@ export default {
             submittng:state=> state.submittng
         }),
 
-        ...mapGetters('productStore',['products']),
+        ...mapGetters('productStore',['products','banks']),
+        ...mapGetters('bankStore',['banks']),
     },
 
     created(){
         if(this.products.length == 0){
             this.getProducts()
+        }
+         if(this.banks.length == 0){
+            this.getBanks()
         }
         this.orderData = getCart()
         console.log(this.orderData)
@@ -105,7 +122,8 @@ export default {
     },
 
     methods:{
-        ...mapActions('productStore',['getProducts']),
+        ...mapActions('productStore',['getProducts','getBanks']),
+        ...mapActions('bankStore',['getBanks']),
         ...mapActions('orderStore',{
             createOrder:'create'
         }),

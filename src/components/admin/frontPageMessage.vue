@@ -1,21 +1,21 @@
 <template>
     <div>
-        <form @submit.prevent="submit()">
+        <form @submit.prevent="submit()" id="front-message">
             <div class="form-row">
                 <div class="col-md-12 mb-3">
-                    <input type="text" class="form-control" v-model="form.subject"  placeholder="Subject" required>
+                    <input type="text" class="form-control" name="subject" v-model="form.subject"  placeholder="Subject" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-12 mb-3">
-                    <textarea type="text" v-model="form.message" class="form-control" placeholder="Message" required></textarea>
+                    <textarea type="text" v-model="form.message" name="message" class="form-control" placeholder="Message" required></textarea>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-12 mb-3">
                     <div class="form-row">
                         <div class="col-md-12 mb-3">
-                            <select class="form-control" v-model="form.option" required>
+                            <select name="option" class="form-control" v-model="form.option" required>
                                 <option :value="null">Message Option</option>
                                 <option v-for="option in options" :value="option" :key="option">{{option}}</option>
                             </select>
@@ -67,7 +67,14 @@ export default {
     methods:{
         ...mapActions('frontPageMessageStore',['create','getMessage']),
         submit(){
-            this.create(this.form).then(res=>{
+            let from = document.getElementById('front-message')
+            let data = new FormData(from)
+            let message = {
+                subject: data.get('subject'),
+                option:data.get('option'),
+                message: data.get('message')
+            }
+            this.create(message).then(res=>{
                 if(res.status==200){
                     this.form = this.message
                 }
