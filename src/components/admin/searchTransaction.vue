@@ -12,7 +12,7 @@
                                 <a class="dropdown-item" @click="getAllOrders()">All Orders</a>
                                 <a class="dropdown-item" @click="getApprovedOrders()">Approved Orders</a>
                                 <a class="dropdown-item" @click="getPendingOrders()">Pending Orders</a>
-                                <a class="dropdown-item" @click="getRejectedOrders()">Declined Orders </a>
+                                <!-- <a class="dropdown-item" @click="getRejectedOrders()">Declined Orders </a> -->
                             </div>
                         </div>
                     </div>

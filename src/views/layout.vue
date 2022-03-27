@@ -22,8 +22,8 @@
                         <ul class="nav navbar-nav">
 
                             <li>
-                                <a class="nav-link ml-2" data-toggle="control-sidebar">
-                                    <button type="submit" id="submit" class="btn btn-sm btn-primary">Back</button>
+                                <a href="https://lilonghero.com" class="btn btn-sm btn-primary">
+                                    Back
                                 </a>
                             </li>
                         </ul>
@@ -36,6 +36,7 @@
                 <div class="invoice white shadow">
                     <div class="row m-5">
                         <div class="col-12 text-center">
+                            <br><br>
                             <p> <img class="w-500px mb-4" src="assets/img/welcome.png" style="-webkit-filter: drop-shadow(3px 3px 3px #222); filter: drop-shadow(3px 3px 3px #222); max-width: 100%;" alt="">
                                 <br>
                                 <strong class="font-weight-bold">

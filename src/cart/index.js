@@ -95,7 +95,7 @@ export default {
         var totalPrice = 0
         cart.products.forEach(product => {
             //alert(product.id)
-            totalPrice = totalPrice + (product.price * product.qty)
+            totalPrice = Number(totalPrice) + (Number(product.price) * Number(product.qty))
         });
         //alert(totalPrice)
         cart.totalPrice = totalPrice
@@ -107,7 +107,7 @@ export default {
         const cart = getCart()
         var totalQty = 0
         cart.products.forEach(product => {
-            totalQty += (product.qty)
+            totalQty += Number(product.qty)
         });
         cart.totalQty = totalQty
         setCart(cart)

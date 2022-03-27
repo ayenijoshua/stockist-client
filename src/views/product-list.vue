@@ -38,15 +38,8 @@
                 </div>
             </div>
             <button @click="checkOrder" type="button" class="btn btn-primary btn-lg  float-left">
-                <i class="icon icon-credit-card"></i> Submit Order
+                <i class="icon icon-credit-card"></i> Proceed To Payment
             </button>
-        </div>
-
-        <div class="row">
-            <div class="col-12 text-center">
-                <h4 class="font-weight-bold"> Disclaimer... </h4>
-                <p>Please ensure you pay to the bank before filling the order form as you would be required to enter your Proof of payment.</p>
-            </div>
         </div>
 
         <modal :modalId="'order'" :modalTitle="'Make Order'" modalSize='lg'>
@@ -56,6 +49,13 @@
                 </div>
                 <div class="col-md-6">
                     <order-form @order-form-submitted="submitOrder"/>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h4 class="font-weight-bold"> Disclaimer... </h4>
+                    <p>Please ensure you pay to the bank before filling the order form as you would be required to enter your Proof of payment.</p>
                 </div>
             </div>
         </modal>

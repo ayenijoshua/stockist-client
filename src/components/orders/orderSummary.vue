@@ -18,7 +18,7 @@
             </tr>
             <tr>
                 <th colspan="10">Total Qty</th>
-                <td>₦{{order.totalQty}}</td>
+                <td>{{order.totalQty}}</td>
             </tr>
             <tr>
                 <th colspan="10">Total Price</th>
