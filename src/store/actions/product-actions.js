@@ -27,6 +27,7 @@ export default {
             if(res.status==200){
                 toastr.success("Product created successfully")
                 commit('storeProduct',data)
+                location.reload()
             }else{
                 toastr.error(res.data.message)
             }
