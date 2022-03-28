@@ -24,13 +24,17 @@ router.beforeEach((to,from,next)=>{
         if(userIsAuthenticated()){
             if(to.meta.isAdmin){
                 checkUserIsAuthorized().then(res=>
-                    {
+                {
                     if(res.data.isAdmin){
                         next()
                     }else{
                         localStorage.removeItem('stockist-token')
                         next({path:'/login'}) 
                     }
+                }).catch(err=>{
+                    console.log(err)
+                    localStorage.removeItem('stockist-token')
+                    next({path:'/login'}) 
                 }) 
             }else{
                 next()

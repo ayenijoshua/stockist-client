@@ -4,6 +4,7 @@
             <thead>
                 <tr>
                     <th scope="col">Product Name</th>
+                    <th scope="col">Available Quantity</th>
                     <th scope="col">Product Price</th>
                     <th scope="col">Product Quantity</th>
                     <th scope="col">Action</th>
@@ -12,6 +13,7 @@
             <tbody>
                 <tr v-for="product,i in products" :key="i">
                     <td>{{product.name}}</td>
+                    <td>{{product.quantity}}</td>
                     <td>₦{{product.price}}</td>
                     <td>
                         <input class="form-control form-control-lg r-0" min="1" max="50" type="number" :id="i+'-qty'" name="quantity" placeholder="Enter Quantity">
@@ -33,6 +35,7 @@
     </div>
 </template>
 <script>
+import {notification} from '@/util/notification'
 export default {
     props:{
         products:{
@@ -45,8 +48,12 @@ export default {
     methods:{
         add(product,i){
             let qty = document.getElementById(i+'-qty').value
-            if(!qty || qty > 50){
+            if(!qty){
                 qty=1
+            }
+            if(qty > product.quantity){
+                notification.error("Your request is above the available quantity")
+                return
             }
             this.$emit('add-to-cart',{product,qty})
         },

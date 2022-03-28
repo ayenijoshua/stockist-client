@@ -23,6 +23,7 @@
                         <tr>
                             <th><strong>S/N</strong></th>
                             <th>Product Name</th>
+                            <th>Available Quantity</th>
                             <th>Product image</th>
                             <th>Product Price (₦)</th>
                             <th>Description Title</th>
@@ -46,6 +47,7 @@
                             <tr v-else v-for="product,i in products" :key="i">
                             <td>{{++i}}</td>
                             <td>{{product.name}}</td>
+                            <td>{{product.quantity}}</td>
                             <td><img class="img-responsive" :src="apiImageUrl + product.imageName" width="50%"></td>
                             <td>₦{{product.price}}</td>
                             <td>{{product.title}}</td>

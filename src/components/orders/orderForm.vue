@@ -2,9 +2,9 @@
     <div>
         <div class="card ">
             <div class="card-body">
-                <div class="card-header">
+                <!-- <div class="card-header">
                     <h3>Order Form</h3>
-                </div>
+                </div> -->
                 <form enctype="multipart/form-data" id="order-form" @submit.prevent="submit()">                
                     <div class="form-row">
                         <div class="col-md-6 mb-3">

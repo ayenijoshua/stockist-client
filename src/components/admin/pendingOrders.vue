@@ -30,7 +30,7 @@
                 <tr v-else v-for="order,i in pendingOrders" :key="i">
                     <td>{{++i}}</td>
                     <td>{{order.user.name}}</td>
-                    <td>LI9735262NG</td>
+                    <td>{{order.idNumber}}</td>
                     <td>{{order.user.phone}}</td>
                     <td>{{order.user.email}}</td>
                     <td>{{order.user.sponsorName}}</td>

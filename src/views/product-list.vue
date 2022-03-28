@@ -42,7 +42,7 @@
             </button>
         </div>
 
-        <modal :modalId="'order'" :modalTitle="'Make Order'" modalSize='lg'>
+        <modal :modalId="'order'" :modalTitle="'Payment Details'" modalSize='lg'>
             <div class="row">
                 <div class="col-md-12">
                     <order-form @order-form-submitted="submitOrder"/>

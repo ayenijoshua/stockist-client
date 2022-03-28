@@ -1,7 +1,7 @@
 import { notification } from "../util/notification";
 
 (function(){
-    //localStorage.removeItem('stokist-cart')
+    localStorage.removeItem('stokist-cart')
     let cart = localStorage.getItem('stokist-cart')
     let cartObj = JSON.parse(cart) || {}
     if(cartObj.products == undefined){
