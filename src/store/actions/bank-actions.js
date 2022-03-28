@@ -43,6 +43,7 @@ export default {
             if(res.status == 200){
                 toastr.success('Bank updated successfully') 
                 commit('updateBank',res.data)
+                location.reload()
             }else{
                 toastr.error(res.data.message)
             }

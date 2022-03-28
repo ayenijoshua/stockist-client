@@ -30,11 +30,11 @@
                 <tr v-else v-for="order,i in pendingOrders" :key="i">
                     <td>{{++i}}</td>
                     <td>{{order.user.name}}</td>
-                    <td>{{order.idNumber}}</td>
+                    <td>{{order.user.idNumber}}</td>
                     <td>{{order.user.phone}}</td>
                     <td>{{order.user.email}}</td>
                     <td>{{order.user.sponsorName}}</td>
-                    <td>{{order.created_at}}</td>
+                    <td>{{new Date(order.created_at).toDateString()}}</td>
                     <td>
                         <button type="submit" id="submit" class="btn btn-sm btn-primary" @click="setOrder(order)" v-b-modal.viewOrder>
                             View Order
@@ -62,14 +62,23 @@
                 <b-skeleton animation="throb" width="55%"></b-skeleton>
                 <b-skeleton animation="throb" width="70%"></b-skeleton>
             </b-card>
-            <div v-else class="row">
-                <div class="col-md-6">
-                    <order-summary  :order="order"/>
+            <template v-else>
+                <div class="row">
+                    <div class="col-md-12">
+                        <order-summary  :order="order"/>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <img :src="apiImageUrl + order.pop" class="img-responsive" width="100%" />
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="text-center">Proof Of Payment</h4>
+                        <div class="card" style="overflow-x:auto;">
+                            <div class="card-body" style="">
+                                <img :src="apiImageUrl + order.pop" class="img-responsive" width="100%" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </template>
         </modal>
 
         <modal  modalId="approve" modalTitle='Approve Order'>

@@ -3,6 +3,9 @@
         <slot>
             <p class="my-4">Hello from modal!</p>
         </slot>
+        <template #modal-footer>
+            &nbsp;
+        </template>
   </b-modal>
 </template>
 

@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group has-icon"><i class="icon-lock"></i>
-                                        <input type="text" v-model="form.password" class="form-control form-control-lg no-b"
+                                        <input type="password" v-model="form.password" class="form-control form-control-lg no-b"
                                             placeholder="Password">
                                     </div>
                                 </div>

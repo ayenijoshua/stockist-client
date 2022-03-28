@@ -3,9 +3,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card" id="incentive">
-                    <div class="card-header">
+                    <!-- <div class="card-header">
                         Add product
-                    </div>
+                    </div> -->
                     <div class="card-body">
                         <form class="form-horizontal form-materia" id="create-product-form" enctype="multipart/form-data" @submit.prevent="submit()">
                             

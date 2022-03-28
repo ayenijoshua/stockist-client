@@ -43,14 +43,15 @@ export default {
     async logOut({commit},id){
         try {
             commit('submitting',null,{root:true})
-            const res = await api.logOut(id)
-            if(res.status==200){
-                toastr.success('Logged out successfully')
+            console.log(id)
+            //const res = await api.logOut(id)
+            //if(res.status==200){
+                //toastr.success('Logged out successfully')
                 vm.$router.push({name:'login'})
                 commit('loggedOut')
-            }else{
-                toastr.error(res.data)
-            }
+            //}else{
+                //toastr.error(res.data.message)
+           // }
             commit('submitted',null,{root:true})
         } catch (error) {
             LogError(commit,error,'submitted')

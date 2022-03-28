@@ -44,6 +44,7 @@ export default {
             if(res.status == 200){
                 toastr.success('Product updated successfully') 
                 commit('updateProduct',res.data)
+                location.reload()
             }else{
                 toastr.error(res.data.message)
             }

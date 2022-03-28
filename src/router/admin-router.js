@@ -19,27 +19,47 @@ export default [
             {
                 path:'',
                 name:'dashboard',
-                component:dashboard
+                component:dashboard,
+                meta:{
+                    isAdmin:true,
+                    requiresAuth:true
+                },
             },
             {
                 path:'dashboard',
                 name:'admin-dashboard',
-                component:dashboard
+                component:dashboard,
+                meta:{
+                    isAdmin:true,
+                    requiresAuth:true
+                },
             },
             {
                 path:'transactions',
                 name:'admin-transactions',
-                component:transactions
+                component:transactions,
+                meta:{
+                    isAdmin:true,
+                    requiresAuth:true
+                },
             },
             {
                 path:'settings',
                 name:'admin-settings',
-                component:settings
+                component:settings,
+                meta:{
+                    isAdmin:true,
+                    requiresAuth:true
+                },
             },
             {
                 path:'security',
                 name:'admin-security',
-                component:security
+                component:security,
+                meta:{
+                    isAdmin:true,
+                    requiresAuth:true
+                },
             },
             {
                 path:'products',
@@ -53,12 +73,20 @@ export default [
             {
                 path:'banks',
                 name:'admin-banks',
-                component:banks
+                component:banks,
+                meta:{
+                    isAdmin:true,
+                    requiresAuth:true
+                },
             },
             {
                 path:'*',
                 name:'admin-dashboard',
-                component:dashboard
+                component:dashboard,
+                meta:{
+                    isAdmin:true,
+                    requiresAuth:true
+                },
             },
           ]
       }

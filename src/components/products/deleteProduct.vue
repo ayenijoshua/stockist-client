@@ -3,9 +3,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card" id="incentive">
-                    <div class="card-header">
+                    <!-- <div class="card-header">
                         Delete product
-                    </div>
+                    </div> -->
                     <div class="card-body">
                         <div class="alert alert-info">
                             Are sure to delete this product - {{product.name}}
