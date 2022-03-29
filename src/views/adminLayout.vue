@@ -27,8 +27,9 @@
                                     <i class="mr-2 icon icon-sign-out text-blue"></i>
                                     <span class="blue-text" v-b-modal.logOut>Logout</span>
                                 </a>
-                                <a href="#" class="list-group-item list-group-item-action"><i
-                                        class="mr-2 icon-key5 text-blue"></i><span class="blue-text">Change Password</span></a>
+                                <router-link :to="{name:'admin-security'}" class="list-group-item list-group-item-action">
+                                    <i class="mr-2 icon-key5 text-blue"></i><span class="blue-text">Change Password</span>
+                                </router-link>
                             </div>
                         </div>
                     </div>
@@ -41,7 +42,7 @@
                     </li>
                     <li :class="['treeview', activeMenu()=='admin-products' ? 'active' : '']" @click="setMenu('admin-products')">
                         <router-link :to="{name:'admin-products'}" >
-                            <i class="icon icon-barometer2 blue-text s-18"></i><span class="blue-text">Products</span> 
+                            <i class="icon icon-cart-plus blue-text s-18"></i><span class="blue-text">Products</span> 
                         </router-link>
                     </li>
                     <li :class="['treeview', activeMenu()=='admin-transactions' ? 'active' : '']" @click="setMenu('admin-transactions')">
@@ -51,7 +52,7 @@
                     </li>
                     <li :class="['treeview', activeMenu()=='admin-banks' ? 'active' : '']" @click="setMenu('admin-banks')">
                         <router-link :to="{name:'admin-banks'}" >
-                            <i class="icon icon-account_balance_wallet blue-text s-18"></i> <span class="blue-text">Banks</span>
+                            <i class="icon icon-bank blue-text s-18"></i> <span class="blue-text">Banks</span>
                         </router-link>
                     </li>
                     <li :class="['treeview', activeMenu()=='admin-settings' ? 'active' : '']" @click="setMenu('admin-settings')">
@@ -142,6 +143,9 @@ export default {
         const pageArr = location.pathname.split('/')
         let activeMenu = pageArr[1]+'-'+pageArr[2]
        this.setMenu(activeMenu)
+
+       //document.getElementsByTagName('title').text = 'Lilonhero | Admin'
+       //alert(document.getElementsByTagName('title').text)
     },
 
     methods:{

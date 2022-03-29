@@ -45,7 +45,7 @@
                         <div class="col-md-12 mb-3">
                             <div class="form-group">
                                 <label for="formFileMultiple" class="form-label">Upload Your Proof Of Payment For Confirmation</label>
-                                <input class="form-control" required name="image" type="file" />
+                                <input class="form-control" accept="image/*" id="pop" required name="image" type="file" />
                             </div>
                         </div>	
                         
@@ -56,7 +56,8 @@
                                 <option value="pickup">Pickup At Store</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-lg float-left m-2" v-b-modal.orderForm>
+                        <span v-if="submitting" class="btn btn-primary">...</span>
+                        <button v-else type="submit" class="btn btn-primary btn-lg float-left m-2">
                             <i class="icon icon-credit-card"></i> Submit
                         </button>
                     </div>
@@ -68,18 +69,50 @@
 </template>
 
 <script>
+import {notification} from '@/util/notification'
+import {mapState} from 'vuex'
 export default {
+    data(){
+        return{
+            maxFileSize:4048576 
+        }
+    },
+
+    computed:{
+        ...mapState({
+            submitting:state=>state.submitting,
+        }),
+    },
+
     methods:{
         submit(){
             let formData = document.getElementById("order-form")
-            let data = new FormData(formData)
-            //alert(data.get('name'))
-            this.$emit('order-form-submitted',data)
+            if(this.checkFileSize()){
+                let data = new FormData(formData)
+                this.$emit('order-form-submitted',data)
+            }
+        },
+
+        checkFileSize(){
+            var fileUpload = document.getElementById("pop");
+            if (typeof (fileUpload.files) != "undefined") {
+                var size = parseFloat(fileUpload.files[0].size ).toFixed(2);
+                //alert(size + " KB.");
+                if(Number(size) > this.maxFileSize){
+                    notification.error("Maximuum file size should be 4mb");
+                    return false
+                }
+                return true
+            } else {
+                notification.info("Please use an updated browser for better user experience");
+                return false
+            }
         }
     },
 
     created(){
         //this.$bvModal.hide('bankDetails')
-    }
+    },
+
 }
 </script>

@@ -15,23 +15,23 @@
                                         Lilong Contact Details
                                     </div>
                                     <div class="card-body">
-                                        <form class="form-horizontal form-materia" id="add-bank-details-form" method="POST" @submit.prevent="submit()">
+                                        <form class="form-horizontal form-materia" id="add-contact-form" method="POST" @submit.prevent="submit()">
                                                 <div class="form-group">
                                                     <label for="example-email" class="col-md-12">Email</label>
                                                     <div class="col-md-12">
-                                                        <input v-model="form.email"  type="email" class="form-control form-control-line">
+                                                        <input v-model="form.email" name="email"  type="email" class="form-control form-control-line">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="example-email" class="col-md-12">Phone Number</label>
                                                     <div class="col-md-12">
-                                                        <input v-model="form.phone"   type="number" class="form-control form-control-line">
+                                                        <input v-model="form.phone" name="phone"   type="number" class="form-control form-control-line">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="example-email" class="col-md-12">Address</label>
                                                     <div class="col-md-12">
-                                                    <textarea v-model="form.address" class="form-control form-control-line"></textarea>
+                                                    <textarea v-model="form.address" name="address" class="form-control form-control-line"></textarea>
                                                     </div>
                                                 </div>
                                                 
@@ -88,7 +88,14 @@ export default {
         ...mapActions('companyContactStore',['getContact','create']),
 
         submit(){
-            this.create(this.form)
+            let form = document.getElementById('add-contact-form')
+            let data = new FormData(form)
+            let contact = {
+                email:data.get('email'),
+                phone:data.get('phone'),
+                address:data.get('address')
+            }
+            this.create(contact)
         }
     }
 }
