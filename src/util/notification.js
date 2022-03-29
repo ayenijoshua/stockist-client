@@ -9,5 +9,8 @@ export const notification = {
     },
     success(msg){
         return toastr.success(msg)
+    },
+    info(msg){
+        return toastr.info(msg)
     }
 }

@@ -48,7 +48,7 @@ export default {
     methods:{
         add(product,i){
             let qty = document.getElementById(i+'-qty').value
-            if(!qty){
+            if(!qty || qty < 1){
                 qty=1
             }
             if(qty > product.quantity){

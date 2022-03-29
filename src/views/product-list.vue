@@ -115,10 +115,12 @@ export default {
          if(this.banks.length == 0){
             this.getBanks()
         }
+        cart.validteCartItems()
         this.orderData = getCart()
         console.log(this.orderData)
         let bdClass = document.getElementById('bdy').classList
         bdClass.add('sidebar-collapse')
+        
     },
 
     methods:{
@@ -131,16 +133,27 @@ export default {
             createUser:'create'
         }),
 
-        addToCart(data){
-            let product = {
+        async addToCart(data){
+            try {
+                let product = {
                 id:data.product._id,
                 name:data.product.name,
                 price:data.product.price,
                 qty:data.qty,
                 totalPrice:data.qty * data.product.price,
+                }
+                let validQty = await cart.validteItemsQty()
+                if(! validQty){
+                    return
+                }
+                cart.addItem(product)
+                this.orderData = getCart()
+            } catch (err) {
+                if(err.response !== undefined){
+                    err.response.status==400 ? notification.error(err.response.data.message) : ''
+                }
             }
-            cart.addItem(product)
-            this.orderData = getCart()
+            
         },
 
         removeFromCart(product){
@@ -153,6 +166,10 @@ export default {
 
         async submitOrder(userInfo){
             try {
+                let validQty = await cart.validteItemsQty()
+                if(! validQty){
+                    return
+                }
                 let user = await this.createUser(userInfo)
                 if(user.status == 200){
                     this.orderData.userId = user.data._id
@@ -165,9 +182,13 @@ export default {
                         },2000)   
                     }
                 }
-            } catch (error) {
-                console.log(error)
-                notification.error("An error occured while processing order")
+            } catch (err) {
+                if(err.response !== undefined){
+                    err.response.status==400 
+                    ? notification.error(err.response.data.message) 
+                    : notification.error("An error occured while processing order")
+                }
+                console.log(err)
             }
         },
 

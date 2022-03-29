@@ -1,7 +1,8 @@
 import { notification } from "../util/notification";
+import api from "../api/products"
 
 (function(){
-    localStorage.removeItem('stokist-cart')
+    //localStorage.removeItem('stokist-cart')
     let cart = localStorage.getItem('stokist-cart')
     let cartObj = JSON.parse(cart) || {}
     if(cartObj.products == undefined){
@@ -12,6 +13,7 @@ import { notification } from "../util/notification";
         }
         localStorage.setItem('stokist-cart',JSON.stringify(cart))
     }
+    //validteCartItems()
 })()
 
 export function getCart(){
@@ -21,6 +23,7 @@ export function getCart(){
 function setCart(cart){
     localStorage.setItem('stokist-cart',JSON.stringify(cart))
 }
+
 
 export default {
 
@@ -120,7 +123,42 @@ export default {
                 throw new Error("property "+ele+" not found in product")
             }
         }) 
-    }
+    },
 
+    async validteItemsQty(){
+        //try {
+            let products = this.getItems()
+            let prods = products.map(function(product){
+                return {id:product.id, qty:product.qty, name:product.name}
+            })
+            const res = await api.validateProductsQty({products:prods})
+            if(res.status == 400){
+                alert(res.data.message)
+                return false
+            }
+            return true
+        //} catch (error) {
+            //console.log(error)
+            //notification.error("An error occured while validating cart items quantity")
+        //}
+    },
+
+    async validteCartItems(){
+        try {
+            let products = this.getItems()
+            let prodIds = products.map(function(product){
+                return product.id
+            })
+            const res = await api.validateProducts({products:prodIds})
+            if(res.status == 400){
+                localStorage.removeItem('stockist-cart')
+                notification.info("Your order contained some outdated products, hence other was cleared")
+            }
+        } catch (error) {
+            console.log(error)
+            notification.error("An error occured while validating cart items")
+        }
+       
+    }
 
 }

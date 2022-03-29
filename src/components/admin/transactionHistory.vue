@@ -21,7 +21,7 @@
             <tr v-else v-for="order,i in orders" :key="i">
                 <td>{{++i}}</td>
                 <td>{{order.user.name}}</td>
-                <td>{{order.user.IdNumber}}</td>
+                <td>{{order.user.idNumber}}</td>
                 <td>{{order.user.phone}}</td>
                 <td>{{order.user.email}}</td>
                 <td>{{order.user.sponsorName}}</td>
@@ -30,7 +30,7 @@
                     <span :class="['btn btn-sm', order.status=='approved' ?
                     'btn-success' :order.status=='pending' ? 'btn-warning' :'btn-danger']">{{order.status}}</span>
                 </td>
-                <td>{{order.created_at}}</td>
+                <td>{{new Date(order.created_at).toDateString()}}</td>
                 <td>
                     <div class="dropdown">
                         <button class="btn btn-sm btn-info" @click="setOrder(order)" v-b-modal.order type="button">
@@ -42,7 +42,33 @@
         </table> 
 
         <modal modalId="order" modalTitle="Order Details" modalSize="lg">
-            <order-summary :order="order"/>
+            <div class="row">
+                <div class="col-md-3">
+                    <button id="submit" @click="print()" class="btn btn-primary">Print Transaction<i class="icon-print"></i></button>
+                </div>
+            </div>
+            <b-card v-if="!order">
+                <b-skeleton animation="throb" width="85%"></b-skeleton>
+                <b-skeleton animation="throb" width="55%"></b-skeleton>
+                <b-skeleton animation="throb" width="70%"></b-skeleton>
+            </b-card>
+            <template v-else>
+                <div class="row">
+                    <div class="col-md-12">
+                        <order-summary :isAdmin="true" :order="order"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="text-center">Proof Of Payment</h4>
+                        <div class="card" style="overflow-x:auto;">
+                            <div class="card-body" style="">
+                                <img :src="apiImageUrl + order.pop" class="img-responsive" width="100%" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
         </modal>
     </div>
 </template>
@@ -66,6 +92,12 @@ import orderSummary from '@/components/orders/orderSummary'
             Modal,
             orderSummary
         },
+
+        computed:{
+            apiImageUrl(){
+                return process.env.VUE_APP_POP_UPLOAD+'/'
+            }
+        },
     
 
         created(){
@@ -77,6 +109,10 @@ import orderSummary from '@/components/orders/orderSummary'
             setOrder(data){
                 this.order = data
             },
+
+            print(){
+                window.print()
+            }
 
         }
     }

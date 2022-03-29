@@ -25,6 +25,14 @@ export default {
 
     total(){
         return http().get(`${endPoints.products}/total`)
+    },
+
+    validateProducts(data){
+        return http().post(`${endPoints.products}/validate`,data)
+    },
+
+    validateProductsQty(data){
+        return http().post(`${endPoints.products}/validateQty`,data)
     }
 
 }

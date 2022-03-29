@@ -6,7 +6,7 @@
             <div class="col-md-9">
             </div>
             <div class="col-md-3">
-                <button type="submit" id="submit" class="btn btn-primary">Print Transaction&nbsp;&nbsp;<i class="icon-print"></i></button>
+                <button type="submit" id="submit" @click="print()" class="btn btn-primary">Print Transaction&nbsp;&nbsp;<i class="icon-print"></i></button>
             </div>
         </div>
                 
@@ -109,6 +109,10 @@ export default {
                     that.element = false
                     element == false
                 });
+            },
+
+            print(){
+                window.print()
             }
 
 

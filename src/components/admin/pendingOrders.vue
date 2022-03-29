@@ -65,7 +65,7 @@
             <template v-else>
                 <div class="row">
                     <div class="col-md-12">
-                        <order-summary  :order="order"/>
+                        <order-summary :isAdmin="true" :order="order"/>
                     </div>
                 </div>
                 <div class="row">
