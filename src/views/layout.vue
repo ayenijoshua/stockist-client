@@ -54,3 +54,10 @@
         </div>
     </div>
 </template>
+<script>
+export default {
+    created(){
+        document.querySelector('title').innerHTML = 'Lilonhero | Products'
+    }
+}
+</script>

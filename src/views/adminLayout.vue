@@ -144,7 +144,7 @@ export default {
         let activeMenu = pageArr[1]+'-'+pageArr[2]
        this.setMenu(activeMenu)
 
-       //document.getElementsByTagName('title').text = 'Lilonhero | Admin'
+       document.querySelector('title').innerHTML = 'Lilonhero | Admin'
        //alert(document.getElementsByTagName('title').text)
     },
 
