@@ -32,7 +32,7 @@ export default{
         try {
             commit('submitting',null,{root:true})
             const res = await api.create(data)
-            processResponse(null,res,'',"User created successfully")
+            processResponse(null,res,'',null)
             return res
         } catch (error) {
             LogError(commit,error,'submitted')
