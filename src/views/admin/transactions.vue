@@ -24,7 +24,8 @@
                         <div class="table-responsive" style="">
                             <transaction-history v-if="showAllOrders" :orders="orders" />
                             <transaction-history v-if="showPendingOrders" :orders="pendingOrders" />
-                            <transaction-history v-if="showApprovedOrders" :orders="approvedOrders" />     
+                            <transaction-history v-if="showApprovedOrders" :orders="approvedOrders" />
+                            <transaction-history v-if="showDisapprovedOrders" :orders="disapprovedOrders" />      
                         </div> 
                     </div>
                 </div>
@@ -51,7 +52,7 @@ export default {
                 showAllOrders:true,
                 showPendingOrders:false,
                 showDeliveredOders:false,
-                showRejectedOrders:false,
+                showDisapprovedOrders:false,
                 showApprovedOrders:false,
             }
         },
@@ -60,7 +61,7 @@ export default {
                 loading:state=>state.loading
             }),
 
-            ...mapGetters('orderStore',['orders','pendingOrders','approvedOrders'])
+            ...mapGetters('orderStore',['orders','pendingOrders','approvedOrders','disapprovedOrders'])
         },
 
         created(){
@@ -89,14 +90,28 @@ export default {
                         this.showPendingOrders = true
                         this.showAllOrders = false
                         this.showApprovedOrders = false
-                        this.hideOtherOrders(['showAllOrders','showApprovedOrders','showRejectedOrders'])
+                        this.showDisapprovedOrders = false
                         break;
                     case 'approved':
                         this.getApproved()
                         this.showPendingOrders = false
                         this.showAllOrders = false
                         this.showApprovedOrders = true
-                        this.hideOtherOrders(['showAllOrders','showPendingOrders','showRejectedOrders'])
+                        this.showDisapprovedOrders = false
+                        break;
+                    case 'disapproved':
+                        this.getDisapproved()
+                        this.showPendingOrders = false
+                        this.showAllOrders = false
+                        this.showDisapprovedOrders = true
+                        this.showApprovedOrders = false
+                        break;
+                    case 'all':
+                        this.getOrders()
+                        this.showPendingOrders = false
+                        this.showAllOrders = true
+                        this.showDisapprovedOrders = false
+                        this.showApprovedOrders = false
                         break;
                     default:
                         break;

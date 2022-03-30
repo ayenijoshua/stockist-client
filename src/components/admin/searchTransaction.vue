@@ -9,10 +9,10 @@
                                 Filter Purchase history
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="position:relative">
-                                <a class="dropdown-item" @click="getAllOrders()">All Orders</a>
-                                <a class="dropdown-item" @click="getApprovedOrders()">Approved Orders</a>
-                                <a class="dropdown-item" @click="getPendingOrders()">Pending Orders</a>
-                                <!-- <a class="dropdown-item" @click="getRejectedOrders()">Declined Orders </a> -->
+                                <a class="dropdown-item" href="#" @click="getAllOrders()">All Orders</a>
+                                <a class="dropdown-item" href="#" @click="getApprovedOrders()">Approved Orders</a>
+                                <a class="dropdown-item" href="#" @click="getPendingOrders()">Pending Orders</a>
+                                <a class="dropdown-item" href="#" @click="getDisapprovedOrders()">Disapproved Orders </a>
                             </div>
                         </div>
                     </div>
@@ -55,8 +55,8 @@ export default {
             this.orderType = 'approved'
             this.$emit('get-specific-orders',this.orderType)
         },
-        getrejectedOrders(){
-            this.orderType = 'rejected'
+        getDisapprovedOrders(){
+            this.orderType = 'disapproved'
             this.$emit('get-specific-orders',this.orderType)
         },
         getDeliveredOrders(){
