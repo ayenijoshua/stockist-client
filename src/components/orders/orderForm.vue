@@ -52,8 +52,8 @@
                         <div class="col-md-12 mb-3">
                             <select name="deliveryType" class="custom-select select2" required>
                                 <option value="">Select Option</option>
-                                <option value="address">Delivery To My Location</option>
-                                <option value="pickup">Pickup At Store</option>
+                                <option value="deliver to my location">Delivery To My Location</option>
+                                <option value="pickup from store">Pickup At Store</option>
                             </select>
                         </div>
                         <span v-if="submitting" class="btn btn-primary">...</span>
