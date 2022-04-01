@@ -133,7 +133,7 @@ export default {
             })
             const res = await api.validateProductsQty({products:prods})
             if(res.status == 400){
-                alert(res.data.message)
+                //alert(res.data.message)
                 return false
             }
             return true
@@ -156,7 +156,12 @@ export default {
             }
         } catch (error) {
             console.log(error)
-            notification.error("An error occured while validating cart items")
+            if(error.response != undefined && error.response.status == 400){
+                localStorage.removeItem('stockist-cart')
+                notification.info("Your order contained some outdated products, hence other was cleared")
+            }else{
+                notification.error("An error occured while validating cart items")
+            }
         }
        
     }
