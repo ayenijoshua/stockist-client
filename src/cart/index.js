@@ -151,14 +151,14 @@ export default {
             })
             const res = await api.validateProducts({products:prodIds})
             if(res.status == 400){
-                localStorage.removeItem('stockist-cart')
+                localStorage.removeItem('stokist-cart')
                 notification.info("Your order contained some outdated products, hence other was cleared")
             }
         } catch (error) {
             console.log(error)
             if(error.response != undefined && error.response.status == 400){
-                localStorage.removeItem('stockist-cart')
-                notification.info("Your order contained some outdated products, hence other was cleared")
+                localStorage.removeItem('stokist-cart')
+                notification.info("Your order contained some outdated products, hence order was cleared")
             }else{
                 notification.error("An error occured while validating cart items")
             }
