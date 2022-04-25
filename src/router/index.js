@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import guestRouter from './guest-router'
 import authRouter from './auth-router'
 import adminRouter from './admin-router'
+import userRouter from './user-router'
 import store from '../store'
 import api from '../api/auth'
 
@@ -11,7 +12,8 @@ Vue.use(VueRouter)
 const routes = [
     ...guestRouter,
     ...authRouter,
-    ...adminRouter
+    ...adminRouter,
+    ...userRouter
 ]
 
 const router = new VueRouter({
