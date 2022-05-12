@@ -8,4 +8,6 @@ export default  {
     frontPageMessage: `${apiVersion}/front-page-message`,
     banks: `${apiVersion}/banks`,
     companyContact: `${apiVersion}/company-contact`,
+    phoneNumbers: `${apiVersion}/phone-numbers`,
+    registeredUsers: `${apiVersion}/registered-users`,
 };

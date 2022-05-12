@@ -7,8 +7,8 @@ export default {
         return http().post(`${endPoints.auth}/login`,data)
     },
 
-    register(id,data){
-        return http().put(`${endPoints.auth}/register`,data)
+    register(data){
+        return http().post(`${endPoints.auth}/register`,data)
     },
 
     logOut(){

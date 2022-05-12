@@ -13,7 +13,7 @@ export default {
                 if(res.data.isAdmin){
                     vm.$router.push({name:'admin-dashboard'})
                 }else{
-                    vm.$router.push({name:'products'})
+                    vm.$router.push({name:'user-dashboard'})
                 }
             }else{
                 toastr.error(res.data.message)
@@ -28,7 +28,7 @@ export default {
         var res;
         try {
             commit('submitting',null,{root:true})
-            res = await api.create(data)
+            res = await api.register(data)
             if(res.status==200){
                 toastr.success("Account created successfully")
             }else{
@@ -61,9 +61,10 @@ export default {
     async getUser({commit}){
         try {
             commit('loading',null,{root:true})
-            const res = api.user()
+            const res = await api.user()
             commit('authUser',res.data)
             commit('loaded',null,{root:true})
+            return res
         } catch (error) {
             LogError(commit,error,'loaded')
         }

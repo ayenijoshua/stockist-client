@@ -1,6 +1,6 @@
 <template>
     <div>
-        <table class="table table-bordered table-hover">
+        <table class="table table-bordered table-hover" data-options='{ "paging": false; "searching":false}'>
             <tr>
                 <th style="border:1px !important;">S/N</th>
                 <th>Name</th>

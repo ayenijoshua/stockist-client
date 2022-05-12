@@ -7,6 +7,8 @@ import frontPageMessageStore from "./front-page-message-store"
 import bankStore from "./banks-store";
 import companyContactStore from "./company-contact-store";
 import authStore from "./auth-store";
+import phoneNumberStore from "./phone-number-store";
+import registeredUserStore from "./registered-users-store";
 
 Vue.use(Vuex);
 
@@ -41,6 +43,8 @@ export default new Vuex.Store({
         frontPageMessageStore,
         bankStore,
         companyContactStore,
-        authStore
+        authStore,
+        phoneNumberStore,
+        registeredUserStore
     }
 })

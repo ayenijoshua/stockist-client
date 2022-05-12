@@ -33,7 +33,10 @@
                         <div class="row">
                             <p class="forget-pass text-white text-center">Have you forgot your username or password ? 
                                 <a href="" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
-                                    <b>Retrieve Here</b></a><br>Don't Have an Account?<a href="#"> <b>Register Now!</b></a></p>
+                                    <b>Retrieve Here</b>
+                                </a>
+                                <br>Don't Have an Account?<router-link :to="{name:'register'}"> <b>Register Now!</b> </router-link>
+                            </p>
                             <div id="collapse1" class="collapse hidden col-lg-12" aria-labelledby="headingOne" data-parent="#accordionExample" style="">
                                 <div class="col-lg-12">
                                     <div class="form-group has-icon"><i class="icon-envelope-o"></i>
