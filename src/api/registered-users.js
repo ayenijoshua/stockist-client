@@ -23,12 +23,21 @@ export default {
     //     return http().delete(`${endPoints.phoneNumbers}/${id}`)
     // },
 
+    all(){
+        return http().get(endPoints.registeredUsers)
+    },
+
     downlines(username){
         return http().get(`${endPoints.registeredUsers}/${username}/downlines`)
     },
 
     totalDownlines(username){
         return http().get(`${endPoints.registeredUsers}/${username}/total-downlines`)
+    },
+
+    search(data){
+        return http().get(`${endPoints.registeredUsers}/search?date_from=${data.date_from}&date_to=${data.date_to}`)
     }
+
 
 }

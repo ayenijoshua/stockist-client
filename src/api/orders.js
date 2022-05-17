@@ -51,5 +51,9 @@ export default {
         return http().get(`${endPoints.orders}/graph`)
     },
 
+    monthlyProfit(){
+        return http().get(`${endPoints.orders}/monthly-profit`)
+    },
+
 
 }

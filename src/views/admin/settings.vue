@@ -45,6 +45,50 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-md-6">
+                                <div class="card" id="bank">
+                                    <div class="card-header">
+                                       SMS settings
+                                    </div>
+                                    <div class="card-body">
+                                        <form class="form-horizontal form-materia" id="sms-form" @submit.prevent="setSmsMessage()">
+                                            <template v-if="loading">
+                                                <b-card v-if="loading">
+                                                    <b-skeleton animation="throb" width="85%"></b-skeleton>
+                                                    <b-skeleton animation="throb" width="55%"></b-skeleton>
+                                                    <b-skeleton animation="throb" width="70%"></b-skeleton>
+                                                </b-card>
+                                            </template>
+                                            <template v-else>
+                                                <div class="form-group">
+                                                    <label for="example-email" class="col-md-12">Text message</label>
+                                                    <div class="col-md-12">
+                                                    <textarea :value="sms.message" required
+                                                        placeholder="Welcome to www.lilonghero.com. We will be glad to have you as a leader in our program, To register: lilonghero.com/philip12345 For More Info: 08073448773" name="text" class="form-control form-control-line"></textarea>
+                                                    </div>
+                                                </div>
+                                            
+                                                <div class="form-group">
+                                                    <div class="col-sm-12">
+                                                        <span v-if="submitting" class="btn btn-primary">...</span>
+                                                        <button v-else class="btn btn-primary" id="">Update</button>
+                                                    </div>
+                                                </div>
+                                            </template>
+                                        </form>    
+                                    </div>
+                                </div>
+
+                                <div class="card mt-3" id="bank">
+                                    <div class="card-header">
+                                       SMS balance
+                                    </div>
+                                    <div class="card-body">
+                                        Balance : {{balance}}
+                                    </div>
+                                </div>
+                            </div>
                         </div>	
                     </div> 
                 </div>
@@ -71,7 +115,8 @@ export default {
             loading:state=>state.loading,
             submitting:state=>state.submitting
         }),
-        ...mapGetters('companyContactStore',['companyContact'])
+        ...mapGetters('companyContactStore',['companyContact']),
+        ...mapGetters('smsStore',['sms','balance'])
     },
 
     created(){
@@ -82,10 +127,16 @@ export default {
                 }
             })
         }
+
+        if(!this.sms){
+            this.getSMS()
+            this.getBalance()
+        }
     },
 
     methods:{
         ...mapActions('companyContactStore',['getContact','create']),
+        ...mapActions('smsStore',['setSMS','getSMS','getBalance']),
 
         submit(){
             let form = document.getElementById('add-contact-form')
@@ -96,6 +147,16 @@ export default {
                 address:data.get('address')
             }
             this.create(contact)
+        },
+
+        setSmsMessage(){
+            let form = document.getElementById('sms-form')
+            let data = new FormData(form)
+            let sms = {
+                message:data.get('text'),
+            }
+
+            this.setSMS(sms)
         }
     }
 }

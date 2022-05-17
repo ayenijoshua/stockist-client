@@ -55,5 +55,9 @@ export default {
 
     ordersGraph(state,data){
         state.ordersGraph = data
+    },
+
+    monthlyProfit(state,data){
+        state.monthlyProfit = data
     }
 }

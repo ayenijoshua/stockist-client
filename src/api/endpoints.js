@@ -10,4 +10,6 @@ export default  {
     companyContact: `${apiVersion}/company-contact`,
     phoneNumbers: `${apiVersion}/phone-numbers`,
     registeredUsers: `${apiVersion}/registered-users`,
+    sms: `${apiVersion}/sms`,
+    //sms: `${apiVersion}/sms`,
 };

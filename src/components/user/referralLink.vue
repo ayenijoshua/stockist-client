@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <input type="text" class="form-control"
-                                        value="https://lilonghero.com/marcus59"
+                                        :value="'https://lilonghero.com/'+user.username"
                                         id="referrallink" readonly>
                                 </div>
 
@@ -44,6 +44,11 @@
 </template>
 <script>
 export default {
-    
+    props:{
+        user:{
+            type:Object,
+            required:true
+        }
+    }
 }
 </script>

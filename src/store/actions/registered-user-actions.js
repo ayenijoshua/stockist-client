@@ -29,6 +29,42 @@ export default{
         }
     },
 
+    async search({commit},data){
+        try {
+            commit('loading',null,{root:true})
+            const res = await api.search(data)
+            processResponse(commit,res,'users')
+            commit('loaded',null,{root:true})
+        } catch (error) {
+            LogError(commit,error,'loaded')
+        }
+    },
+
+    async getUsers({commit}){
+        try {
+            commit('loading',null,{root:true})
+            const res = await api.all()
+            if(res.status==200){
+                commit('users',res.data)
+            }else{
+                notification.error(res.message)
+            }
+        } catch (error) {
+            LogError(commit,error,'loaded')
+        }
+    },
+
+    async getTotalUsers({commit}){
+        try {
+            commit('loading',null,{root:true})
+            const res = await api.total()
+            processResponse(commit,res,'totalUsers')
+            commit('loaded',null,{root:true})
+        } catch (error) {
+            LogError(commit,error,'loaded')
+        }
+    },
+
 }
 
 const LogError = (commit,err,commitType)=>{

@@ -55,6 +55,16 @@
                             <i class="icon icon-bank blue-text s-18"></i> <span class="blue-text">Banks</span>
                         </router-link>
                     </li>
+                    <li :class="['treeview', activeMenu()=='admin-members' ? 'active' : '']" @click="setMenu('admin-members')">
+                        <router-link :to="{name:'admin-members'}" >
+                            <i class="icon icon-user blue-text s-18"></i> <span class="blue-text">Members</span>
+                        </router-link>
+                    </li>
+                     <li :class="['treeview', activeMenu()=='admin-profits' ? 'active' : '']" @click="setMenu('admin-profits')">
+                        <router-link :to="{name:'admin-profits'}" >
+                            <i class="icon icon-money blue-text s-18"></i> <span class="blue-text">Profits</span>
+                        </router-link>
+                    </li>
                     <li :class="['treeview', activeMenu()=='admin-settings' ? 'active' : '']" @click="setMenu('admin-settings')">
                         <router-link :to="{name:'admin-settings'}" >
                             <i class="icon icon-vcard blue-text s-18"></i>

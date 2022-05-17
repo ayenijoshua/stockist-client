@@ -12,7 +12,8 @@ export default{
             pendingOrders:[],
             approvedOrders:[],
             disapprovedOrders:[],
-            ordersGraph:[]
+            ordersGraph:[],
+            monthlyProfit:[]
         }
     },
     actions:{

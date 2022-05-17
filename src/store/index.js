@@ -9,6 +9,7 @@ import companyContactStore from "./company-contact-store";
 import authStore from "./auth-store";
 import phoneNumberStore from "./phone-number-store";
 import registeredUserStore from "./registered-users-store";
+import smsStore from "./sms-store";
 
 Vue.use(Vuex);
 
@@ -45,6 +46,7 @@ export default new Vuex.Store({
         companyContactStore,
         authStore,
         phoneNumberStore,
-        registeredUserStore
+        registeredUserStore,
+        smsStore
     }
 })

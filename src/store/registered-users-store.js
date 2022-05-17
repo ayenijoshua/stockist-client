@@ -8,7 +8,9 @@ export default{
     state(){
         return{
             downlines:[],
-            totalDownlines:null
+            totalDownlines:null,
+            users:[],
+            totalUsers:null
         }
     },
     actions:{

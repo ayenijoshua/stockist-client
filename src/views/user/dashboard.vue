@@ -55,7 +55,7 @@
 
                     <div class="d-flex row row-eq-height my-3">
                         <div class="col-md-6">
-                            <referral-link />
+                            <referral-link :user="authUser"/>
                         </div>
                         <br><br><br>
                         <div class="col-md-6">
@@ -63,7 +63,11 @@
                         </div>
                     </div>
                     <template v-if="loading">
-                        ...loading
+                        <b-card>
+                            <b-skeleton animation="throb" width="85%"></b-skeleton>
+                            <b-skeleton animation="throb" width="55%"></b-skeleton>
+                            <b-skeleton animation="throb" width="70%"></b-skeleton>
+                        </b-card>
                     </template>
                     <downline v-else :downlines="downlines"/>
 
@@ -125,7 +129,8 @@ export default {
     },
 
     methods:{
-        ...mapActions('authStore',['getUser']),
+        ...mapActions('authStore',['getUser','logOut']),
+        //...mapActions('authStore',['logOut']),
         ...mapActions('registeredUserStore',['getDownlines','getTotalDownlines']),
     }
 }

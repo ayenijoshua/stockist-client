@@ -33,5 +33,9 @@ export default {
 
     ordersGraph(state){
         return state.ordersGraph
+    },
+
+    monthlyProfit(state){
+        return state.monthlyProfit
     }
 }

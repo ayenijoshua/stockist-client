@@ -5,6 +5,8 @@ import transactions from '@/views/admin/transactions'
 import settings from '@/views/admin/settings'
 import products from '@/views/admin/products'
 import banks from '@/views/admin/banks'
+import members from '@/views/admin/registeredMembers'
+import profits from '@/views/admin/profit'
 
 export default [
     
@@ -74,6 +76,24 @@ export default [
                 path:'banks',
                 name:'admin-banks',
                 component:banks,
+                meta:{
+                    isAdmin:true,
+                    requiresAuth:true
+                },
+            },
+            {
+                path:'members',
+                name:'admin-members',
+                component:members,
+                meta:{
+                    isAdmin:true,
+                    requiresAuth:true
+                },
+            },
+            {
+                path:'profits',
+                name:'admin-profits',
+                component:profits,
                 meta:{
                     isAdmin:true,
                     requiresAuth:true

@@ -142,6 +142,17 @@ export default{
         } catch (error) {
             LogError(commit,error,'loaded')
         }
+    },
+
+    async getMonthlyProfit({commit}){
+        try {
+            commit('loading',null,{root:true})
+            const res = await api.monthlyProfit()
+            processResponse(commit,res,'monthlyProfit')
+            commit('loaded',null,{root:true})
+        } catch (error) {
+            LogError(commit,error,'loaded')
+        }
     }
 
 }

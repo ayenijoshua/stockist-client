@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid my-3">
-        <form id="searchForm">
+        <form id="searchForm" @submit.prevent="searchUser()">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -24,7 +24,7 @@
                 <div class="col-md-5">
                 </div>
                 <div class="col-md-7">
-                    <button type="submit" id="submit" class="btn btn-primary">Print Transaction&nbsp;&nbsp;<i class="icon-print"></i></button>
+                    <button type="submit" id="submit" class="btn btn-primary">Print&nbsp;&nbsp;<i class="icon-print"></i></button>
                 </div>
             </div>
         </form><br>
@@ -46,7 +46,6 @@
                                     <th scope="col">Referral</th>
                                     <th scope="col">State</th>
                                     <th scope="col">Date</th>
-                                    <th scope="col">Time</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -56,12 +55,14 @@
                                     </tr>
                                 </template>
                                 <tr v-else v-for="user,i in users" :key="i">
-                                    <th scope="row">{{i++}}</th>
+                                    <th scope="row">{{++i}}</th>
                                     <td>{{user.name}}</td>
                                     <td>{{user.username}}</td>
                                     <td>{{user.phone}} </td>
                                     <td>{{user.email}}</td>
-                                    <td>{{user.created_at}}</td>
+                                    <td>{{user.referrer}}</td>
+                                    <td>{{user.state}}</td>
+                                    <td>{{user.createdAt}}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -100,7 +101,11 @@ export default {
     },
 
     methods:{
-        ...mapActions('registeredUserStore',['getUsers']),
+        ...mapActions('registeredUserStore',['getUsers','search']),
+
+        searchUser(){
+            this.search(this.form)
+        }
     }
 }
 </script>
