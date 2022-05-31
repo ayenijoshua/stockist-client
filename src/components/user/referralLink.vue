@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <input type="text" class="form-control"
-                                        :value="'https://lilonghero.com/'+user.username"
+                                        :value="'https://app.lilonghero.com/register/'+user.username"
                                         id="referrallink" readonly>
                                 </div>
 

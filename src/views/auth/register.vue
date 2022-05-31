@@ -37,7 +37,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group has-icon"><i class="icon-user-plus"></i>
                                         <input type="text" class="form-control form-control-lg no-b"
-                                            placeholder="Referral Username" name="referrer">
+                                            placeholder="Referral Username" :value="referral" name="referrer">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -65,11 +65,20 @@
 <script>
 import {mapActions, mapState} from 'vuex'
 export default {
+    data(){
+        return{
+            referral : this.$route.params.referral || null
+        }
+    },
 
     computed:{
         ...mapState({
             submitting:state=>state.submitting
         })
+    },
+
+    created(){
+
     },
 
     methods:{
