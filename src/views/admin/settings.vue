@@ -54,7 +54,7 @@
                                     <div class="card-body">
                                         <form class="form-horizontal form-materia" id="sms-form" @submit.prevent="setSmsMessage()">
                                             <template v-if="loading">
-                                                <b-card v-if="loading">
+                                                <b-card >
                                                     <b-skeleton animation="throb" width="85%"></b-skeleton>
                                                     <b-skeleton animation="throb" width="55%"></b-skeleton>
                                                     <b-skeleton animation="throb" width="70%"></b-skeleton>
