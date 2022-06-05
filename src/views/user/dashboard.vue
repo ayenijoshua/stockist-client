@@ -46,7 +46,7 @@
                                 <div class="float-up text-center">
                                     <span class="icon icon-male s-48"></span>
                                 </div>
-                                <div class="sc-counter s-36 text-center">{{total}}</div>
+                                <div class="sc-counter s-36 text-center" v-if="!loading">{{total}}</div>
                                 <h6 class="counter-title text-center">Total Referral Registrations</h6>
                             </div>
                         </div>
@@ -126,6 +126,11 @@ export default {
                 }
             })
         }
+
+        if(this.downlines.length == 0){
+            this.getDownlines()
+        }
+       
     },
 
     methods:{

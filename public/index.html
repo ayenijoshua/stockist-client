@@ -15,7 +15,7 @@
     <title></title>
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/app.css">
-    <script src="/assets/js/app.js" defer></script>
+    
     <style>
         /* .loader {
             position: fixed;
@@ -46,9 +46,31 @@
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div id="main"></div>
+    <div id="app">
+      <div id="main"></div>
+    </div>
+    
     <!-- built files will be auto injected -->
     
   </body>
+  <script>
 
+    function myFunction() {
+        /* Get the text field */
+        var copyText = document.getElementById("referrallink");
+
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+
+        /* Alert the copied text */
+        //alert("Copied: " + copyText.value);
+        document.getElementById('button').textContent = 'Referral Link Copied';
+    }
+</script>
+<script src="/assets/js/app.js" defer></script>
+    
 </html>

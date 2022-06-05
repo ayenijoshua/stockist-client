@@ -8,7 +8,7 @@
                 <div class="card-body ">
                     <div class="table-responsive">
                         <table id="example2" class="table table-bordered table-hover data-tables"
-                            data-options='{ "paging": true; "searching":true}'>
+                            data-options='{ "paging": false; "searching":false;}'>
                             <thead>
                                 <tr>
                                     <th scope="col">S/N</th>
@@ -26,12 +26,12 @@
                                     </tr>
                                 </template>
                                 <tr v-else v-for="downline,i in downlines" :key="i">
-                                    <th scope="row">{{i++}}</th>
-                                    <td>{{downine.name}}</td>
-                                    <td>{{downine.username}}</td>
-                                    <td>{{downine.phone}} </td>
-                                    <td>{{downine.email}}</td>
-                                    <td>{{downine.created_at}}</td>
+                                    <th scope="row">{{++i}}</th>
+                                    <td>{{downline.name}}</td>
+                                    <td>{{downline.username}}</td>
+                                    <td>{{downline.phone}} </td>
+                                    <td>{{downline.email}}</td>
+                                    <td>{{(new Date(downline.createdAt)).toDateString()}}</td>
                                 </tr>
                             </tbody>
                         </table>

@@ -24,7 +24,7 @@
                 <div class="col-md-5">
                 </div>
                 <div class="col-md-7">
-                    <button type="submit" id="submit" class="btn btn-primary">Print&nbsp;&nbsp;<i class="icon-print"></i></button>
+                    <button type="submit" id="submit" @click="print()" class="btn btn-primary">Print&nbsp;&nbsp;<i class="icon-print"></i></button>
                 </div>
             </div>
         </form><br>
@@ -35,18 +35,18 @@
                     <div class="card-header white text-blue">Registered Members</div>
                     <div class="card-body ">
                         <div class="table-responsive">
-                            <table id="example2" class="table table-bordered table-hover data-tables" data-options='{ "paging": false; "searching":false}'>
+                            <table id="example2" class="table table-bordered table-hover data-tables" data-options='{ "paging": false "searching":false}'>
                                 <thead>
-                                <tr>
-                                    <th scope="col">S/N</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Username</th>
-                                    <th scope="col">Phone No.</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Referral</th>
-                                    <th scope="col">State</th>
-                                    <th scope="col">Date</th>
-                                </tr>
+                                    <tr>
+                                        <th scope="col">S/N</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Username</th>
+                                        <th scope="col">Phone No.</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Referral</th>
+                                        <th scope="col">State</th>
+                                        <th scope="col">Date</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 <template v-if="users.length == 0">
@@ -62,7 +62,7 @@
                                     <td>{{user.email}}</td>
                                     <td>{{user.referrer}}</td>
                                     <td>{{user.state}}</td>
-                                    <td>{{user.createdAt}}</td>
+                                    <td>{{ (new Date(user.createdAt)).toDateString() }}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -105,6 +105,10 @@ export default {
 
         searchUser(){
             this.search(this.form)
+        },
+
+        print(){
+            window.print()
         }
     }
 }
