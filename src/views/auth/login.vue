@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-lg-7 mx-md-auto">
                         <div class="text-center">
-                            <img class="img-responsive" src="assets/img/fronter1.png" style= "max-width: 100%;" alt="">
+                           <a href="https://lilonghero.com"><img class="img-responsive" src="assets/img/fronter1.png" style= "max-width: 100%;" alt=""/></a> 
                             <p class="p-t-b-20 text-white">Welcome back, signin...
                                 </p>
                         </div>
@@ -31,13 +31,13 @@
                             </div>
                         </form>
                         <div class="row">
-                            <p class="forget-pass text-white text-center">Have you forgot your username or password ? 
-                                <a href="" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
+                            <p class="forget-pass text-white text-center"> 
+                                <!-- Have you forgot your username or password ?<a href="" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
                                     <b>Retrieve Here</b>
-                                </a>
+                                </a> -->
                                 <br>Don't Have an Account?<router-link :to="{name:'register'}"> <b>Register Now!</b> </router-link>
                             </p>
-                            <div id="collapse1" class="collapse hidden col-lg-12" aria-labelledby="headingOne" data-parent="#accordionExample" style="">
+                            <!-- <div id="collapse1" class="collapse hidden col-lg-12" aria-labelledby="headingOne" data-parent="#accordionExample" style="">
                                 <div class="col-lg-12">
                                     <div class="form-group has-icon"><i class="icon-envelope-o"></i>
                                         <input type="text" class="form-control form-control-lg no-b"
@@ -47,8 +47,8 @@
                                 <div class="col-lg-12 text-center">
                                     <input type="submit"  class="btn btn-success btn-lg btn-block" value="Reset Password">
                                 </div>
-                            </div>
-                        </div>
+                            </div> -->
+                        </div> 
                     </div>
                 </div>
             </div>

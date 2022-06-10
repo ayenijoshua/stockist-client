@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-lg-7 mx-md-auto">
                         <div class="text-center">
-                            <img class="img-responsive" src="/assets/img/fronter1.png" style= "max-width: 100%;" alt="">
+                            <a href="https://lilonghero.com"><img class="img-responsive" src="assets/img/fronter1.png" style= "max-width: 100%;" alt=""/></a> 
                             <p class="p-t-b-20 text-white">Let the Journey Begin...</p>
                         </div>
                         <form @submit.prevent="submit()" id="regForm">
