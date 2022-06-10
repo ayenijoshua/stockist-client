@@ -36,8 +36,12 @@ export default {
     },
 
     search(data){
-        return http().get(`${endPoints.registeredUsers}/search?date_from=${data.date_from}&date_to=${data.date_to}`)
-    }
+        return http().get(`${endPoints.registeredUsers}/search?date_from=${data.date_from}&date_to=${data.date_to}&username=${data.username}`)
+    },
+
+    // searchUsername(data){
+    //     return http().get(`${endPoints.registeredUsers}/search?username=${data.username}`)
+    // }
 
 
 }

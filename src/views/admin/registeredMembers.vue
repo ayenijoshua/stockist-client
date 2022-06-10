@@ -5,15 +5,17 @@
                 <div class="card-body">
                     <div class="row">
 
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <input type="date" id="start" class="form-control " style="" v-model="form.date_from" required placeholder="Date from ">
                         </div>
 
-                        <div class="col-md-4">
-
+                        <div class="col-md-3">
                             <input type="date" id="start" class="form-control " style="" v-model="form.date_to" required placeholder="Date to">
                         </div><br>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
+                            <input type="text" id="start" class="form-control " style="" v-model="form.username" required placeholder="username">
+                        </div><br>
+                        <div class="col-md-3">
                             <button type="submit" id="submit" class="btn btn-primary">View Order History&nbsp;&nbsp;<i class="icon-search"></i></button>
                         </div>
                     </div>
@@ -81,6 +83,7 @@ export default {
             form:{
                 date_from:null,
                 date_to:null,
+                username:null
             },
         }
     },
