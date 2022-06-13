@@ -17,5 +17,15 @@ export default {
 
     user(){
         return http().get(`${endPoints.auth}/user`)
+    },
+
+    resetPasswordLink(data){
+        return http().post(`${endPoints.auth}/reset-password-link`,data)
+    },
+    
+    resetPassword(data){
+        return http().post(`${endPoints.auth}/reset-password/${data.token}`,data)
     }
+
+
 }

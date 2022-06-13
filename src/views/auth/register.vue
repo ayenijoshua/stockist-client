@@ -6,7 +6,13 @@
                     <div class="col-lg-7 mx-md-auto">
                         <div class="text-center">
                             <a href="https://lilonghero.com"><img class="img-responsive" src="assets/img/fronter1.png" style= "max-width: 100%;" alt=""/></a> 
-                            <p class="p-t-b-20 text-white">Let the Journey Begin...</p>
+                            <p class="p-t-b-20 text-white">
+                                Welcome to the Era of Energy Medicine. 
+                                The Era of self made healthy and wealthy.            
+                                Take part in the business project of 8 billion Naira and earn weekly up to N2billion.                 
+                                Let the journey begin!
+                                fill the form below and we will contact you.
+                            </p>
                         </div>
                         <form @submit.prevent="submit()" id="regForm">
                             <div class="row">

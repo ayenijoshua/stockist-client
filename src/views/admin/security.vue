@@ -34,12 +34,12 @@
 
                                                 </div>
                                                 <br>
-                                                <form action="https://xvelopers.com/demos/html/paper-panel/dashboard2.html">
+                                                <form @submit.prevent="submit()">
                                                     <div class="form-group has-icon"><label>Enter Email</label>
-                                                        <input type="text" class="form-control form-control-lg"
-                                                                placeholder="">
+                                                        <input required v-model="form.email" type="text" class="form-control form-control-lg"
+                                                                placeholder="Email address">
                                                     </div>
-                                                    <input type="submit" disabled class="btn btn-success btn-lg btn-block" value="Send">
+                                                    <input type="submit" class="btn btn-success btn-lg btn-block" value="Send">
                                                 </form>
                                                 <br>
                                                 <br>
@@ -52,17 +52,35 @@
                         </div>
                     </div>
                 </div>
-                
-                
-                
-                
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import {mapActions,mapState} from 'vuex'
 export default {
+
+    data(){
+        return{
+            form:{
+                email:null
+            }
+        }
+    },
+
+    computed:{
+        ...mapState({
+            submitting:state=>state.submitting
+        })
+    },
     
+    methods:{
+        ...mapActions('authStore',['resetPasswordLink']),
+
+        submit(){
+            this.resetPasswordLink(this.form)
+        }
+    }
 }
 </script>

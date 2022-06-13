@@ -26,7 +26,7 @@
                 <div class="animated ">
                     <div class="card">
                         <div class="card-header white">
-                            <h6> YOUR BACK-OFFICE </h6>
+                            <h6> {{authUser.name}} </h6>
                         </div>
                     </div>
                     <br>

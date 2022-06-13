@@ -68,7 +68,40 @@ export default {
         } catch (error) {
             LogError(commit,error,'loaded')
         }
-    }
+    },
+
+    async resetPasswordLink({commit},data){
+        try {
+            commit('submitting',null,{root:true})
+            const res = await api.resetPasswordLink(data)
+            if(res && res.status==200){
+                toastr.success('Reset password link has been sent to your eamil address')
+            }else{
+                toastr.error(res.data.message)
+            }
+        commit('submitted',null,{root:true})
+        } catch (error) {
+            LogError(commit,error,'submitted')
+        }
+    },
+
+    async resetPassword({commit},data){
+        try {
+            commit('submitting',null,{root:true})
+            const res = await api.resetPassword(data)
+            if(res && res.status==200){
+                toastr.success('password has been reset successfully, please login to continue')
+                vm.$router.push({name:'login'})
+            }else{
+                toastr.error(res.data.message)
+            }
+        commit('submitted',null,{root:true})
+        } catch (error) {
+            LogError(commit,error,'submitted')
+        }
+    },
+
+
 }
 
 const LogError = (commit,err,commitType)=>{
