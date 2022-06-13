@@ -110,13 +110,17 @@ export default {
         total(){
             return this.downlines.length
         },
+    },
 
-
+    mounted(){
+        //location.reload()
     },
 
     created(){
         let bdClass = document.getElementById('bdy').classList
         bdClass.add('sidebar-collapse')
+
+        
 
         var that = this
         if(Object.entries(this.authUser).length == 0){
@@ -125,10 +129,9 @@ export default {
                     that.getDownlines(that.authUser.username)
                 }
             })
-        }
-
-        if(this.downlines.length == 0){
-            this.getDownlines()
+        }else{
+             //alert(that.authUser.username)
+            this.getDownlines(that.authUser.username)
         }
        
     },

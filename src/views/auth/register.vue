@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-lg-7 mx-md-auto">
                         <div class="text-center">
-                            <a href="https://lilonghero.com"><img class="img-responsive" src="assets/img/fronter1.png" style= "max-width: 100%;" alt=""/></a> 
+                            <a href="https://lilonghero.com"><img class="img-responsive" src="/assets/img/fronter1.png" style= "max-width: 100%;" alt=""/></a> 
                             <p class="p-t-b-20 text-white">
                                 Welcome to the Era of Energy Medicine. 
                                 The Era of self made healthy and wealthy.            
