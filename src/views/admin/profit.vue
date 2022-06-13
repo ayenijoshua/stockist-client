@@ -1,17 +1,15 @@
 <template>
     <div class="container-fluid animatedParent animateOnce my-3 ">
-        <form method="post" id="searchForm" action="/admin/searchUser">
-            <br>
+        
             <div class="row">
                 <div class="col-md-5">
                 </div>
                 <div class="col-md-7">
-                    <button type="submit" id="submit" class="btn btn-primary">Print Transaction&nbsp;&nbsp;<i class="icon-print"></i></button>
+                    <button type="button" @click="print()" class="btn btn-primary">Print Transaction&nbsp;&nbsp;<i class="icon-print"></i></button>
                 </div>
             </div>
-        </form><br>
-		
-		
+            <br>
+    
         <div class="row">
             <div class="col-md-12">
                 <div class="card mb-3">
@@ -66,7 +64,11 @@ export default {
     },
 
     methods:{
-        ...mapActions('orderStore',['getMonthlyProfit'])
+        ...mapActions('orderStore',['getMonthlyProfit']),
+
+        print(){
+            window.print()
+        }
     },
 
     created(){
