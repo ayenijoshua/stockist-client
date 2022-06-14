@@ -31,7 +31,7 @@
                             </div>
                         </form>
                         <div class="row">
-                            <p class="forget-pass text-white text-center"> Have you forgot your username or password ?
+                            <p class="forget-pass text-white text-center"> Forgot your username or password ?
                                 <a href="" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
                                     <b>Retrieve Here</b>
                                 </a>

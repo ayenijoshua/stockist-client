@@ -75,7 +75,7 @@ export default {
             commit('submitting',null,{root:true})
             const res = await api.resetPasswordLink(data)
             if(res && res.status==200){
-                toastr.success('Reset password link has been sent to your eamil address')
+                toastr.success('Reset password link has been sent to your email address')
             }else{
                 toastr.error(res.data.message)
             }

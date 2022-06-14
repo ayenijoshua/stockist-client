@@ -26,7 +26,7 @@
                                     <div class="col-md-12 mb-3">
                                         <textarea class="form-control" name="phones"
                                             id="" rows="2"
-                                            placeholder="E.g 09012345612,08012345678"
+                                            placeholder="E.g 09012345612 or 23412345678"
                                             required>
                                         </textarea>
                                     </div>
