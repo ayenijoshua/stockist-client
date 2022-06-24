@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card mb-3">
-                    <div class="card-header white text-blue">Total Monthly Product Sales</div>
+                    <div class="card-header white text-blue">Total Monthly Team Turnover</div>
                     <div class="card-body ">
                         <div class="table-responsive">
                             <table id="example2" class="table table-bordered table-hover data-tables" data-options='{ "paging": false; "searching":false}'>
@@ -31,7 +31,7 @@
                                     <template v-else>
                                         <tr v-for="profit,i in monthlyProfit" :key="i">
                                             <th>{{++i}}</th>
-                                            <td>{{months[profit.month-1]}},2022</td>
+                                            <td>{{months[profit.month-1]}},{{new Date().getFullYear()}}</td>
                                             <td>₦{{profit.profit}}</td>
                                         </tr>
                                     </template>

@@ -52,6 +52,40 @@
                         </div>
                     </div>
                     <!--Style End 3-->
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card mb-3">
+                                <div class="card-header white text-blue">Total Monthly Product Sales</div>
+                                <div class="card-body ">
+                                    <div class="table-responsive">
+                                        <table id="example2" class="table table-bordered table-hover" data-options='{ "paging": true; "searching":true}'>
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">S/N</th>
+                                                <th scope="col">Month</th>
+                                                <th scope="col">Total Sales</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <template v-if="loading">
+                                                    ...loading
+                                                </template>
+                                                <template v-else>
+                                                    <tr v-for="profit,i in monthlyProfit" :key="i">
+                                                        <th>{{++i}}</th>
+                                                        <td>{{months[profit.month-1]}},{{new Date().getFullYear()}}</td>
+                                                        <td>₦{{profit.profit}}</td>
+                                                    </tr>
+                                                </template>
+                                            
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>				
+                    </div>
 
                     <div class="d-flex row row-eq-height my-3">
                         <div class="col-md-6">
@@ -106,10 +140,15 @@ export default {
 
         ...mapGetters('registeredUserStore',['downlines','totalDownlines']),
         ...mapGetters('authStore',['authUser']),
+        ...mapGetters('orderStore',['monthlyProfit']),
 
         total(){
             return this.downlines.length
         },
+
+        months(){
+            return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+        }
     },
 
     mounted(){
@@ -133,6 +172,10 @@ export default {
              //alert(that.authUser.username)
             this.getDownlines(that.authUser.username)
         }
+
+        if(this.monthlyProfit.length == 0){
+            this.getMonthlyProfit()
+        }
        
     },
 
@@ -140,6 +183,7 @@ export default {
         ...mapActions('authStore',['getUser','logOut']),
         //...mapActions('authStore',['logOut']),
         ...mapActions('registeredUserStore',['getDownlines','getTotalDownlines']),
+         ...mapActions('orderStore',['getMonthlyProfit']),
     }
 }
 </script>
