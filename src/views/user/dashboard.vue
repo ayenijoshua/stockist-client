@@ -56,7 +56,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card mb-3">
-                                <div class="card-header white text-blue">Total Monthly Product Sales</div>
+                                <div class="card-header white text-blue">Total Monthly Team Turnover</div>
                                 <div class="card-body ">
                                     <div class="table-responsive">
                                         <table id="example2" class="table table-bordered table-hover" data-options='{ "paging": true; "searching":true}'>
