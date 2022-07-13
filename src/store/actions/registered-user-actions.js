@@ -67,11 +67,25 @@ export default{
         }
     },
 
-    async getTotalUsers({commit}){
+    async getInvestors({commit}){
+        try {
+            commit('loading',null,{root:true})
+            const res = await api.investors()
+            if(res.status==200){
+                commit('investors',res.data)
+            }else{
+                notification.error(res.message)
+            }
+        } catch (error) {
+            LogError(commit,error,'loaded')
+        }
+    },
+
+    async getTotalMembers({commit}){
         try {
             commit('loading',null,{root:true})
             const res = await api.total()
-            processResponse(commit,res,'totalUsers')
+            processResponse(commit,res,'totalMembers')
             commit('loaded',null,{root:true})
         } catch (error) {
             LogError(commit,error,'loaded')

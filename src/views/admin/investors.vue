@@ -1,5 +1,20 @@
 <template>
     <div class="container-fluid my-3">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-header white">
+                        <h6> Investors </h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <button class="btn btn-primary" v-b-modal.createInvestor>Add</button>
+                </div>
+            </div>
+        </div>
+
         <form id="searchForm" @submit.prevent="searchUser()">
             <div class="card">
                 <div class="card-body">
@@ -34,7 +49,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card mb-3">
-                    <div class="card-header white text-blue">Registered Members</div>
+                    <div class="card-header white text-blue">Investors</div>
                     <div class="card-body ">
                         <div class="table-responsive">
                             <table id="example2" class="table table-bordered table-hover data-tables" data-options='{ "paging": false "searching":false}'>
@@ -45,25 +60,23 @@
                                         <th scope="col">Username</th>
                                         <th scope="col">Phone No.</th>
                                         <th scope="col">Email</th>
-                                        <th scope="col">Referral</th>
                                         <th scope="col">State</th>
                                         <th scope="col">Date</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <template v-if="users.length == 0">
+                                <template v-if="investors.length == 0">
                                     <tr>
-                                        <td colspan="6" class="text-center">There are no users</td>
+                                        <td colspan="5" class="text-center">There are no investors</td>
                                     </tr>
                                 </template>
-                                <tr v-else v-for="user,i in users" :key="i">
+                                <tr v-else v-for="user,i in investors" :key="i">
                                     <th scope="row">{{++i}}</th>
                                     <td>{{user.name}}</td>
                                     <td>{{user.username}}</td>
                                     <td>{{user.phone}} </td>
                                     <td>{{user.email}}</td>
-                                    <td>{{user.referrer}}</td>
                                     <td>{{user.state}}</td>
                                     <td>{{ (new Date(user.createdAt)).toDateString() }}</td>
                                     <td>
@@ -86,22 +99,28 @@
             </div>				
         </div>
 
+        <modal :modalId="'createInvestor'" :modalTitle="'Add Investor'" :modalSize="'md'">
+            <create-investor/>
+        </modal>
+
         <modal :modalId="'resetPassword'" :modalTitle="'Reset Password'" :modalSize="'md'">
             <div v-if="!user">...Please wait</div>
             <reset-user-password v-else :user="user"/>
         </modal>
+
     </div>
 </template>
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
 import modal from '@/components/Modal'
+import createInvestor from '@/components/admin/createInvestor'
 import resetUserPassword from '@/components/admin/resetUserPassword'
 export default {
     components:{
         modal,
+        createInvestor,
         resetUserPassword
     },
-
     data(){
         return{
             form:{
@@ -119,17 +138,17 @@ export default {
             submitting:state=>state.submitting
         }),
 
-        ...mapGetters('registeredUserStore',['users']),
+        ...mapGetters('registeredUserStore',['investors']),
     },
 
     created(){
-        if(this.users.length == 0){
-            this.getUsers()
+        if(this.investors.length == 0){
+            this.getInvestors()
         }
     },
 
     methods:{
-        ...mapActions('registeredUserStore',['getUsers','search']),
+        ...mapActions('registeredUserStore',['getInvestors','search']),
 
         searchUser(){
             this.search(this.form)

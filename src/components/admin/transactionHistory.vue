@@ -9,7 +9,10 @@
                 <th>Email</th>
                 <th>Sponsor Name</th>
                 <th>State</th>
-                <th>Order Status</th>                                                        
+                <th>Order Status</th>
+                <th>Upline username</th>
+                <th>Upline bank name</th>
+                <th>Upline bank account</th>                                                       
                 <th>Date Of Order</th>
                 <th>View Order</th>
             </tr> 
@@ -30,6 +33,9 @@
                     <span :class="['btn btn-sm', order.status=='approved' ?
                     'btn-success' :order.status=='pending' ? 'btn-warning' :'btn-danger']">{{order.status}}</span>
                 </td>
+                <td>{{order.user.uplineUsername}}</td>
+                <td>{{order.user.uplineBankName}}</td>
+                <td>{{order.user.uplineBankAccountNumber}}</td>
                 <td>{{new Date(order.created_at).toDateString()}}</td>
                 <td>
                     <div class="dropdown">

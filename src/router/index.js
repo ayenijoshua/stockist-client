@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import guestRouter from './guest-router'
 import authRouter from './auth-router'
 import adminRouter from './admin-router'
+import investorRouter from './investor-route'
 import userRouter from './user-router'
 import store from '../store'
 import api from '../api/auth'
@@ -13,7 +14,8 @@ const routes = [
     ...guestRouter,
     ...authRouter,
     ...adminRouter,
-    ...userRouter
+    ...userRouter,
+    ...investorRouter
 ]
 
 const router = new VueRouter({

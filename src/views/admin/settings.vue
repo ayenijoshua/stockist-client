@@ -90,6 +90,19 @@
                                 </div>
                             </div>
                         </div>	
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <div class="card" id="bank">
+                                    <div class="card-header">
+                                        Change Admin Password
+                                    </div>
+                                    <div class="card-body">
+                                        <div v-if="!authUser">Please wait</div>
+                                        <reset-user-password :user="authUser" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div> 
                 </div>
             </div>
@@ -99,65 +112,68 @@
 
 <script>
 import {mapState,mapActions,mapGetters} from 'vuex'
+import resetUserPassword from '@/components/admin/resetUserPassword'
 export default {
-    data(){
-        return{
-            form:{
-                email:null,
-                phone:null,
-                address:null
-            }
-        }
+    components: {
+        resetUserPassword
     },
-
-    computed:{
+    data() {
+        return {
+            form: {
+                email: null,
+                phone: null,
+                address: null
+            }
+        };
+    },
+    computed: {
         ...mapState({
-            loading:state=>state.loading,
-            submitting:state=>state.submitting
+            loading: state => state.loading,
+            submitting: state => state.submitting
         }),
-        ...mapGetters('companyContactStore',['companyContact']),
-        ...mapGetters('smsStore',['sms','balance'])
+        ...mapGetters("companyContactStore", ["companyContact"]),
+        ...mapGetters("smsStore", ["sms", "balance"]),
+        ...mapGetters("authStore", ["authUser"])
     },
-
-    created(){
-        if(Object.entries(this.companyContact).length == 0 || this.form.email==null){
-            this.getContact().then(res=>{
-                if(res.status==200){
-                    this.form = res.data
+    created() {
+        if (Object.entries(this.companyContact).length == 0 || this.form.email == null) {
+            this.getContact().then(res => {
+                if (res.status == 200) {
+                    this.form = res.data;
                 }
-            })
+            });
         }
-
-        if(!this.sms){
-            this.getSMS()
-            this.getBalance()
+        if (!this.sms) {
+            this.getSMS();
+            this.getBalance();
+        }
+        if (Object.entries(this.authUser).length == 0) {
+            this.getUser();
         }
     },
-
-    methods:{
-        ...mapActions('companyContactStore',['getContact','create']),
-        ...mapActions('smsStore',['setSMS','getSMS','getBalance']),
-
-        submit(){
-            let form = document.getElementById('add-contact-form')
-            let data = new FormData(form)
+    methods: {
+        ...mapActions("companyContactStore", ["getContact", "create"]),
+        ...mapActions("smsStore", ["setSMS", "getSMS", "getBalance"]),
+        ...mapActions("authStore", ["getUser"]),
+        submit() {
+            let form = document.getElementById("add-contact-form");
+            let data = new FormData(form);
             let contact = {
-                email:data.get('email'),
-                phone:data.get('phone'),
-                address:data.get('address')
-            }
-            this.create(contact)
+                email: data.get("email"),
+                phone: data.get("phone"),
+                address: data.get("address")
+            };
+            this.create(contact);
         },
-
-        setSmsMessage(){
-            let form = document.getElementById('sms-form')
-            let data = new FormData(form)
+        setSmsMessage() {
+            let form = document.getElementById("sms-form");
+            let data = new FormData(form);
             let sms = {
-                message:data.get('text'),
-            }
-
-            this.setSMS(sms)
+                message: data.get("text"),
+            };
+            this.setSMS(sms);
         }
-    }
+    },
+    
 }
 </script>

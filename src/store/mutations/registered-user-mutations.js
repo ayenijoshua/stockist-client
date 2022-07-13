@@ -12,13 +12,17 @@ export default {
         state.users = data
     },
 
+    investors(state,data){
+        state.investors = data
+    },
+
     deleteUser(state,data){
         let users = state.users
         let index = users.findIndex(ele=>ele.id==data.id)
         users.splice(index,1)
     },
 
-    totalUsers(state,data){
-        state.totalUsers = data.total
+    totalMembers(state,data){
+        state.totalMembers = data.total
     }
 }

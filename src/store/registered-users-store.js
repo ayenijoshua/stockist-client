@@ -10,7 +10,8 @@ export default{
             downlines:[],
             totalDownlines:null,
             users:[],
-            totalUsers:null
+            totalMembers:null,
+            investors:[]
         }
     },
     actions:{

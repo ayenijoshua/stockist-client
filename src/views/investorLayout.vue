@@ -27,61 +27,39 @@
                                     <i class="mr-2 icon icon-sign-out text-blue"></i>
                                     <span class="blue-text" v-b-modal.logOut>Logout</span>
                                 </a>
-                                <router-link :to="{name:'admin-security'}" class="list-group-item list-group-item-action">
-                                    <i class="mr-2 icon-key5 text-blue"></i><span class="blue-text">Change Password</span>
-                                </router-link>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
                 <ul class="sidebar-menu">
-                    <li :class="['treeview', activeMenu()=='admin-dashboard' ? 'active' : '']" @click="setMenu('admin-dashboard')">
-                        <router-link :to="{name:'admin-dashboard'}" >
+                    <li :class="['treeview', activeMenu()=='investor-dashboard' ? 'active' : '']" @click="setMenu('investor-dashboard')">
+                        <router-link :to="{name:'investor-dashboard'}" >
                             <i class="icon icon-barometer2 blue-text s-18"></i><span class="blue-text">Dashboard</span> 
                         </router-link>
                     </li>
-                    <li :class="['treeview', activeMenu()=='admin-products' ? 'active' : '']" @click="setMenu('admin-products')">
-                        <router-link :to="{name:'admin-products'}" >
+                    <li :class="['treeview', activeMenu()=='investor-products' ? 'active' : '']" @click="setMenu('investor-products')">
+                        <router-link :to="{name:'investor-products'}" >
                             <i class="icon icon-cart-plus blue-text s-18"></i><span class="blue-text">Products</span> 
                         </router-link>
                     </li>
-                    <li :class="['treeview', activeMenu()=='admin-transactions' ? 'active' : '']" @click="setMenu('admin-transactions')">
-                        <router-link :to="{name:'admin-transactions'}" >
+                    <li :class="['treeview', activeMenu()=='investor-transactions' ? 'active' : '']" @click="setMenu('investor-transactions')">
+                        <router-link :to="{name:'investor-transactions'}" >
                             <i class="icon icon-account_balance_wallet blue-text s-18"></i> <span class="blue-text">Transaction History</span>
                         </router-link>
                     </li>
-                    <li :class="['treeview', activeMenu()=='admin-banks' ? 'active' : '']" @click="setMenu('admin-banks')">
-                        <router-link :to="{name:'admin-banks'}" >
-                            <i class="icon icon-bank blue-text s-18"></i> <span class="blue-text">Banks</span>
-                        </router-link>
-                    </li>
-                    <li :class="['treeview', activeMenu()=='admin-members' ? 'active' : '']" @click="setMenu('admin-members')">
-                        <router-link :to="{name:'admin-members'}" >
+                    <li :class="['treeview', activeMenu()=='investor-members' ? 'active' : '']" @click="setMenu('investor-members')">
+                        <router-link :to="{name:'investor-members'}" >
                             <i class="icon icon-user blue-text s-18"></i> <span class="blue-text">Members</span>
                         </router-link>
                     </li>
-                     <li :class="['treeview', activeMenu()=='admin-profits' ? 'active' : '']" @click="setMenu('admin-profits')">
-                        <router-link :to="{name:'admin-profits'}" >
+                     <li :class="['treeview', activeMenu()=='investor-profits' ? 'active' : '']" @click="setMenu('investor-profits')">
+                        <router-link :to="{name:'investor-profits'}" >
                             <i class="icon icon-money blue-text s-18"></i> <span class="blue-text">Profits</span>
                         </router-link>
                     </li>
-                    <li :class="['treeview', activeMenu()=='admin-investors' ? 'active' : '']" @click="setMenu('admin-investors')">
-                        <router-link :to="{name:'admin-investors'}" >
-                            <i class="icon icon-money blue-text s-18"></i> <span class="blue-text">Investors</span>
-                        </router-link>
-                    </li>
-                    <li :class="['treeview', activeMenu()=='admin-settings' ? 'active' : '']" @click="setMenu('admin-settings')">
-                        <router-link :to="{name:'admin-settings'}" >
-                            <i class="icon icon-vcard blue-text s-18"></i>
-                            <span class="blue-text">Company Contact</span>
-                        </router-link>
-                    </li>
-                    <li :class="['treeview', activeMenu()=='admin-security' ? 'active' : '']" @click="setMenu('admin-security')">
-                        <router-link :to="{name:'admin-security'}" >
-                            <i class="icon icon-lock3 blue-text s-18"></i>
-                            <span class="blue-text">Security</span>
-                        </router-link>
-                    </li>
+                    
+                    
                 </ul>
             </section>
         </aside>
@@ -108,7 +86,7 @@
                             </a>
                         </div>
                         <div class="d-none d-md-block">
-                            <h5 class="nav-title text-blue">Admin Dashboard</h5>
+                            <h5 class="nav-title text-blue">Investor Dashboard</h5>
                         </div>
                     </div>
                 </div>

@@ -14,7 +14,7 @@
                         </div>	
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <input class="form-control form-control-lg r-0" required type="text" name="idNumber" placeholder="Enter Your ID Number">
+                                <input class="form-control form-control-lg r-0" required type="text" name="username" placeholder="Suggested Username">
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
@@ -29,33 +29,82 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <input class="form-control form-control-lg r-0" required type="text" name="sponsorName" placeholder="Enter Your Sponsor Name">
+                                <input class="form-control form-control-lg r-0" required type="text" name="bankName" placeholder="Enter Your Bank name">
                             </div>
-                        </div>	
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <input class="form-control form-control-lg r-0" required type="text" name="accountNumber" placeholder="Enter Your Bank account number">
+                            </div>
+                        </div>
+                        
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
                                 <input class="form-control form-control-lg r-0" required type="text" id="State" name="state" placeholder="Enter Your State">
                             </div>
                         </div>
-                        <div class="col-md-12 mb-3">
+                        <div class="col-md-6 mb-3">
                             <div class="form-group">
                                 <input class="form-control form-control-lg r-0" required type="text" id="Address" name="address" placeholder="Enter Your Address">
                             </div>
                         </div>
-                        <div class="col-md-12 mb-3">
+                        <div class="col-md-6 mb-3">
                             <div class="form-group">
                                 <label for="formFileMultiple" class="form-label">Upload Your Proof Of Payment For Confirmation</label>
                                 <input class="form-control" accept="image/*" id="pop" required name="image" type="file" />
                             </div>
                         </div>	
                         
-                        <div class="col-md-12 mb-3">
+                        <div class="col-md-6 mb-3">
+                            <label for="formFileMultiple" class="form-label">Select delivery type</label>
                             <select name="deliveryType" class="custom-select select2" required>
                                 <option value="">Select Option</option>
                                 <option value="deliver to my location">Delivery To My Location</option>
                                 <option value="pickup from store">Pickup At Store</option>
                             </select>
                         </div>
+                    </div>
+
+                    <h5 class="text-center">Sponsor and Upline</h5>
+                    <hr/>
+                    <div class="form-row">
+                        
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <input class="form-control form-control-lg r-0" required type="text" name="uplineUsername" placeholder="Upline Username">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <input class="form-control form-control-lg r-0" required type="text" name="sponsorName" placeholder="Sponsor Name">
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <input class="form-control form-control-lg r-0" required type="text" name="sponsorUsername" placeholder="Sponsor username">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <input class="form-control form-control-lg r-0" required type="text" name="sponsorBankName" placeholder="Sponsor Bank Name">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <input class="form-control form-control-lg r-0" required type="text" name="sponsorAccountNumber" placeholder="Sponsor Bank Account Number">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <input class="form-control form-control-lg r-0" required type="text" id="State" name="sponsorState" placeholder="Sponsor State">
+                            </div>
+                        </div>
+                    
                         <span v-if="submitting" class="btn btn-primary">...</span>
                         <button v-else type="submit" class="btn btn-primary btn-lg float-left m-2">
                             <i class="icon icon-credit-card"></i> Submit

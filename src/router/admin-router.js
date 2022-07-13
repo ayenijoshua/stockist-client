@@ -7,6 +7,7 @@ import products from '@/views/admin/products'
 import banks from '@/views/admin/banks'
 import members from '@/views/admin/registeredMembers'
 import profits from '@/views/admin/profit'
+import investors from '@/views/admin/investors'
 
 export default [
     
@@ -94,6 +95,15 @@ export default [
                 path:'profits',
                 name:'admin-profits',
                 component:profits,
+                meta:{
+                    isAdmin:true,
+                    requiresAuth:true
+                },
+            },
+            {
+                path:'investors',
+                name:'admin-investors',
+                component:investors,
                 meta:{
                     isAdmin:true,
                     requiresAuth:true

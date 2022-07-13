@@ -25,6 +25,14 @@ export default {
     
     resetPassword(data){
         return http().post(`${endPoints.auth}/reset-password/${data.token}`,data)
+    },
+
+    resetUserPassword(data){
+        return http().post(`${endPoints.auth}/reset-user-password/${data.userId}`,data)
+    },
+
+    createInvestor(data){
+        return http().post(`${endPoints.auth}/create-investor`,data)
     }
 
 

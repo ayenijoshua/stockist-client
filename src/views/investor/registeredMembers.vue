@@ -48,7 +48,6 @@
                                         <th scope="col">Referral</th>
                                         <th scope="col">State</th>
                                         <th scope="col">Date</th>
-                                        <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -66,17 +65,6 @@
                                     <td>{{user.referrer}}</td>
                                     <td>{{user.state}}</td>
                                     <td>{{ (new Date(user.createdAt)).toDateString() }}</td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Edit/Delete
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="position:relative">
-                                                <a data-id="2" class="dropdown-item btn" @click="setUser(user)" v-b-modal.resetPassword>Reset Password</a>
-                                                <a data-id="2" class="dropdown-item btn" @click="setUser(user)" v-b-modal.deleteUser>Delete</a>
-                                            </div>
-                                        </div>
-                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -85,23 +73,11 @@
                 </div>
             </div>				
         </div>
-
-        <modal :modalId="'resetPassword'" :modalTitle="'Reset Password'" :modalSize="'md'">
-            <div v-if="!user">...Please wait</div>
-            <reset-user-password v-else :user="user"/>
-        </modal>
     </div>
 </template>
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
-import modal from '@/components/Modal'
-import resetUserPassword from '@/components/admin/resetUserPassword'
 export default {
-    components:{
-        modal,
-        resetUserPassword
-    },
-
     data(){
         return{
             form:{
@@ -109,7 +85,6 @@ export default {
                 date_to:null,
                 username:null
             },
-            user:null
         }
     },
 
@@ -137,10 +112,6 @@ export default {
 
         print(){
             window.print()
-        },
-
-        setUser(user){
-            this.user = user
         }
     }
 }

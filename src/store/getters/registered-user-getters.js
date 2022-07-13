@@ -13,7 +13,11 @@ export default {
         return state.users
     },
 
-    totalUsers(state){
-        return state.totalUsers
+    investors(state){
+        return state.investors
+    },
+
+    totalMembers(state){
+        return state.totalMembers
     }
 }
