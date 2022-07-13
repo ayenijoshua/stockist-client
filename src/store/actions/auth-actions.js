@@ -49,7 +49,7 @@ export default {
             res = await api.createInvestor(data)
             if(res.status==200){
                 toastr.success("Investor created successfully")
-                //commit('addInvestor',data)
+                location.reload()
             }else{
                 toastr.error(res.data.message)
             }
