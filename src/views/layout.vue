@@ -21,14 +21,12 @@
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
                             <li>
-                                
                                 <a href="https://lilonghero.com" class="btn btn-sm btn-primary m-2">
                                     Home
                                 </a>
                                 <a href="https://app.lilonghero.com/login" class="btn btn-sm btn-primary m-2">
                                     Login
                                 </a>
-                                
                             </li>
                         </ul>
                     </div>
