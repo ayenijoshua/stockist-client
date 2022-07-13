@@ -4,15 +4,19 @@
             <tr>
                 <th style="border:1px !important;">S/N</th>
                 <th>Name</th>
-                <th>ID No.</th>
                 <th>Phone No.</th>
                 <th>Email</th>
-                <th>Sponsor Name</th>
+                <th>Suggested username</th>
+                <th>Bank Name</th>
+                <th>Account Number</th>
                 <th>State</th>
                 <th>Order Status</th>
                 <th>Upline username</th>
-                <th>Upline bank name</th>
-                <th>Upline bank account</th>                                                       
+                <th>Sponsor name</th>
+                <th>Sponsor username</th>
+                <th>Sponsor bank name</th>
+                <th>Sponsor account number</th>
+                <th>Sponsor state</th>                                                      
                 <th>Date Of Order</th>
                 <th>View Order</th>
             </tr> 
@@ -24,18 +28,22 @@
             <tr v-else v-for="order,i in orders" :key="i">
                 <td>{{++i}}</td>
                 <td>{{order.user.name}}</td>
-                <td>{{order.user.idNumber}}</td>
                 <td>{{order.user.phone}}</td>
                 <td>{{order.user.email}}</td>
-                <td>{{order.user.sponsorName}}</td>
+                <td>{{order.user.username}}</td>
+                <td>{{order.user.bankName}}</td>
+                <td>{{order.user.accountNumber}}</td>
                 <td>{{order.user.state}}</td>
                 <td> 
                     <span :class="['btn btn-sm', order.status=='approved' ?
                     'btn-success' :order.status=='pending' ? 'btn-warning' :'btn-danger']">{{order.status}}</span>
                 </td>
                 <td>{{order.user.uplineUsername}}</td>
-                <td>{{order.user.uplineBankName}}</td>
-                <td>{{order.user.uplineBankAccountNumber}}</td>
+                <td>{{order.user.sponsorName}}</td>
+                <td>{{order.user.sponsorUsername}}</td>
+                <td>{{order.user.sponsorBankName}}</td>
+                <td>{{order.user.sponsorAccountNumber}}</td>
+                <td>{{order.user.sponsorState}}</td>
                 <td>{{new Date(order.created_at).toDateString()}}</td>
                 <td>
                     <div class="dropdown">

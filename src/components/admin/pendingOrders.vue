@@ -4,36 +4,52 @@
             <tr>
                 <th style="border:1px !important;">S/N</th>
                 <th>Name</th>
-                <th>ID No.</th>
                 <th>Phone No.</th>
                 <th>Email</th>
-                <th>Sponsor Name</th>                                   
+                <th>Suggested username</th>
+                <th>Bank Name</th>
+                <th>Account Number</th>
+                <th>State</th>
+                <th>Upline username</th>
+                <th>Sponsor name</th>
+                <th>Sponsor username</th>
+                <th>Sponsor bank name</th>
+                <th>Sponsor account number</th>
+                <th>Sponsor state</th>                                                      
                 <th>Date Of Order</th>
                 <th>View Order</th>
                 <th>Action</th>
-            </tr>    
+            </tr> 
             <tr v-if="loading">
-                <td colspan="7">
+                <td colspan="10">
                     <b-skeleton-table
                         :rows="5"
-                        :columns="7"
+                        :columns="9"
                         :table-props="{ bordered: true, striped: true }"
                     ></b-skeleton-table>
                 </td>
             </tr> 
             <template v-else>
                 <tr v-if="pendingOrders.length==0">
-                    <td colspan="8">
+                    <td colspan="9">
                         There are no pending orders
                     </td>
                 </tr>
                 <tr v-else v-for="order,i in pendingOrders" :key="i">
                     <td>{{++i}}</td>
                     <td>{{order.user.name}}</td>
-                    <td>{{order.user.idNumber}}</td>
                     <td>{{order.user.phone}}</td>
                     <td>{{order.user.email}}</td>
+                    <td>{{order.user.username}}</td>
+                    <td>{{order.user.bankName}}</td>
+                    <td>{{order.user.accountNumber}}</td>
+                    <td>{{order.user.state}}</td>
+                    <td>{{order.user.uplineUsername}}</td>
                     <td>{{order.user.sponsorName}}</td>
+                    <td>{{order.user.sponsorUsername}}</td>
+                    <td>{{order.user.sponsorBankName}}</td>
+                    <td>{{order.user.sponsorAccountNumber}}</td>
+                    <td>{{order.user.sponsorState}}</td>
                     <td>{{new Date(order.created_at).toDateString()}}</td>
                     <td>
                         <button type="submit" id="submit" class="btn btn-sm btn-primary" @click="setOrder(order)" v-b-modal.viewOrder>
