@@ -109,11 +109,27 @@
             </div>
         </div>
 
-        <modal :modalId="'logOut'" :modalSize="'sm'" :modalTitle="'Log out'">
-            <div class="alert alert-danger">
-                Are you sure you want to log out?
-                <button class="btn btn-danger" @click="logOut()">Yes</button>
+        <modal :modalId="'logOut'" :modalSize="'lg'" :modalTitle="'Log out.Change password'">
+            <div class="row">
+                <div class="col-md-6">
+                     <div class="alert alert-danger">
+                        Are you sure you want to log out?
+                        <button class="btn btn-danger" @click="logOut()">Yes</button>
+                    </div>
+                </div>
+                <div>
+                    <div class="card" id="bank">
+                        <div class="card-header">
+                            Change Password
+                        </div>
+                        <div class="card-body">
+                            <div v-if="!authUser">Please wait</div>
+                            <reset-user-password :user="authUser" />
+                        </div>
+                    </div>
+                </div>
             </div>
+           
         </modal>
 
     </div>
@@ -124,13 +140,15 @@ import modal from '@/components/Modal'
 import downline from '@/components/user/downlines'
 import referralLink from '@/components/user/referralLink'
 import phoneNumber from '@/components/user/phoneNumber'
+import resetUserPassword from '@/components/admin/resetUserPassword'
 import {mapActions, mapGetters, mapState} from 'vuex'
 export default {
     components:{
         modal,
         downline,
         referralLink,
-        phoneNumber
+        phoneNumber,
+        resetUserPassword
     },
 
     computed:{

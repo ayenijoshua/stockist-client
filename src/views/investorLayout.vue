@@ -43,7 +43,7 @@
                             <i class="icon icon-cart-plus blue-text s-18"></i><span class="blue-text">Products</span> 
                         </router-link>
                     </li>
-                    <li :class="['treeview', activeMenu()=='investor-transactions' ? 'active' : '']" @click="setMenu('investor-transactions')">
+                    <!-- <li :class="['treeview', activeMenu()=='investor-transactions' ? 'active' : '']" @click="setMenu('investor-transactions')">
                         <router-link :to="{name:'investor-transactions'}" >
                             <i class="icon icon-account_balance_wallet blue-text s-18"></i> <span class="blue-text">Transaction History</span>
                         </router-link>
@@ -52,10 +52,10 @@
                         <router-link :to="{name:'investor-members'}" >
                             <i class="icon icon-user blue-text s-18"></i> <span class="blue-text">Members</span>
                         </router-link>
-                    </li>
+                    </li> -->
                      <li :class="['treeview', activeMenu()=='investor-profits' ? 'active' : '']" @click="setMenu('investor-profits')">
                         <router-link :to="{name:'investor-profits'}" >
-                            <i class="icon icon-money blue-text s-18"></i> <span class="blue-text">Profits</span>
+                            <i class="icon icon-money blue-text s-18"></i> <span class="blue-text">Turn Over</span>
                         </router-link>
                     </li>
                     
