@@ -40,18 +40,16 @@ export default{
         }
     },
 
-    // async searchUsername({commit},data){
-    //     try {
-    //         commit('loading',null,{root:true})
-    //         commit('submitting',null,{root:true})
-    //         const res = await api.searchUsername(data)
-    //         processResponse(commit,res,'users')
-    //         commit('loaded',null,{root:true})
-    //         commit('submitted',null,{root:true})
-    //     } catch (error) {
-    //         LogError(commit,error,'loaded')
-    //     }
-    // },
+    async searchInvestor({commit},data){
+        try {
+            commit('loading',null,{root:true})
+            const res = await api.searchInvestor(data)
+            processResponse(commit,res,'investors')
+            commit('loaded',null,{root:true})
+        } catch (error) {
+            LogError(commit,error,'loaded')
+        }
+    },
 
     async getUsers({commit}){
         try {

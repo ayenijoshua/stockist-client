@@ -31,7 +31,7 @@
                             <input type="text" id="start" class="form-control " style="" v-model="form.username" placeholder="username">
                         </div><br>
                         <div class="col-md-3">
-                            <button type="submit" id="submit" class="btn btn-primary">View Members&nbsp;&nbsp;<i class="icon-search"></i></button>
+                            <button type="submit" id="submit" class="btn btn-primary">View Investors&nbsp;&nbsp;<i class="icon-search"></i></button>
                         </div>
                     </div>
                 </div>      
@@ -82,11 +82,11 @@
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Edit/Delete
+                                                Action
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="position:relative">
                                                 <a data-id="2" class="dropdown-item btn" @click="setUser(user)" v-b-modal.resetPassword>Reset Password</a>
-                                                <a data-id="2" class="dropdown-item btn" @click="setUser(user)" v-b-modal.deleteUser>Delete</a>
+                                                <a data-id="2" class="dropdown-item btn" @click="setUser(user)" v-b-modal.deleteInvestor>Delete</a>
                                             </div>
                                         </div>
                                     </td>
@@ -108,6 +108,14 @@
             <reset-user-password v-else :user="user"/>
         </modal>
 
+        <modal :modalId="'deleteInvestor'" :modalTitle="'Delete Investor'" :modalSize="'md'">
+            <div v-if="!user">...Please wait</div>
+            <div class="alert alert-danger">
+                Confirm to delete this investor?
+                <button class="btn btn-danger" @click="deleteUser()">Delete</button>
+            </div>
+        </modal>
+
     </div>
 </template>
 <script>
@@ -115,6 +123,8 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 import modal from '@/components/Modal'
 import createInvestor from '@/components/admin/createInvestor'
 import resetUserPassword from '@/components/admin/resetUserPassword'
+import api from '../../api/registered-users'
+import toastr from 'toastr'
 export default {
     components:{
         modal,
@@ -148,10 +158,10 @@ export default {
     },
 
     methods:{
-        ...mapActions('registeredUserStore',['getInvestors','search']),
+        ...mapActions('registeredUserStore',['getInvestors','searchInvestor']),
 
         searchUser(){
-            this.search(this.form)
+            this.searchInvestor(this.form)
         },
 
         print(){
@@ -160,6 +170,18 @@ export default {
 
         setUser(user){
             this.user = user
+        },
+
+        deleteUser(){
+            api.delete(this.user._id).then(res=>{
+                if(res.status == 200){
+                    toastr.success("Inveator deleted successfully")
+                    location.reload()
+                }
+            }).catch(err=>{
+                console.log(err)
+                toastr.error("An error occured, please try again")
+            })
         }
     }
 }

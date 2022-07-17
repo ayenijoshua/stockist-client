@@ -69,11 +69,10 @@
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Edit/Delete
+                                                Action
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="position:relative">
                                                 <a data-id="2" class="dropdown-item btn" @click="setUser(user)" v-b-modal.resetPassword>Reset Password</a>
-                                                <a data-id="2" class="dropdown-item btn" @click="setUser(user)" v-b-modal.deleteUser>Delete</a>
                                             </div>
                                         </div>
                                     </td>

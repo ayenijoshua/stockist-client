@@ -14,7 +14,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="bank,i in banks" :key="i">
+                    <tr v-if="banks.length == 0">
+                        <td colspan="3" class="alert alert-info text-center">
+                            There are no bank details
+                        </td>
+                    </tr>
+                    <tr v-else v-for="bank,i in banks" :key="i">
                         <td>{{bank.bankName}}</td>
                         <td>{{bank.accountName}}</td>
                         <td>{{bank.accountNumber}}</td>

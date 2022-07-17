@@ -43,8 +43,16 @@ export default {
         return http().get(`${endPoints.registeredUsers}/search?date_from=${data.date_from}&date_to=${data.date_to}&username=${data.username}`)
     },
 
+    searchInvestor(data){
+        return http().get(`${endPoints.registeredUsers}/search-investor?date_from=${data.date_from}&date_to=${data.date_to}&username=${data.username}`)
+    },
+
     total(){
         return http().get(`${endPoints.registeredUsers}/total`)
+    },
+
+    delete(id){
+        return http().delete(`${endPoints.registeredUsers}/${id}`)
     }
 
 
