@@ -44,7 +44,7 @@ export default {
     },
 
     search(data){
-        return http().post(`${endPoints.orders}/search`,data)
+        return http().get(`${endPoints.orders}/search?from_date=${data.from_date}&to_date=${data.to_date}&username=${data.username}`)
     },
 
     graph(){

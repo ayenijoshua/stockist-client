@@ -3,6 +3,24 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
+                    <div class="col-md-3">
+                        <input type="date" id="start" v-model="form.from_date" class="form-control " style="" name="trip-start" placeholder="To Date ">
+                    </div>
+
+                    <div class="col-md-3">
+                        <input type="date" id="start" v-model="form.to_date" class="form-control " style="" name="trip-start" placeholder="To Date ">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" id="start" v-model="form.username" class="form-control " style="" name="trip-start"  placeholder="Enter username ">
+                    </div>
+
+                    <div class="col-md-3">
+                        <button type="submit" id="submit" class="btn btn-primary">View Order History&nbsp;&nbsp;<i class="icon-search"></i></button>
+                    </div>
+                </div>
+
+                <br>
+                <div class="row">    
                     <div class="col-md-3 mr-0">
                         <div class="dropdown">
                             <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -16,17 +34,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <input type="date" id="start" v-model="form.from_date" class="form-control " style="" name="trip-start" required placeholder="To Date ">
-                    </div>
 
-                    <div class="col-md-3">
-
-                        <input type="date" id="start" v-model="form.to_date" class="form-control " style="" name="trip-start" required placeholder="To Date ">
-                    </div>
-                    <div class="col-md-3">
-                        <button type="submit" id="submit" class="btn btn-primary">View Order History&nbsp;&nbsp;<i class="icon-search"></i></button>
-                    </div>
                 </div>
             </div>      
         </div><br>
@@ -41,6 +49,7 @@ export default {
             form:{
                 from_date:null,
                 to_date:null,
+                username:null
             },
             orderType:'all'
         }

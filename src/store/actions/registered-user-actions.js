@@ -90,6 +90,17 @@ export default{
         }
     },
 
+    async deleteMember({commit},id){
+        try {
+            commit('submitting',null,{root:true})
+            const res = await api.delete(id)
+            processResponse(null,res,'','Member delete successfuly')
+            commit('submitted',null,{root:true})
+        } catch (error) {
+            LogError(commit,error,'submitted')
+        }
+    },
+
 }
 
 const LogError = (commit,err,commitType)=>{

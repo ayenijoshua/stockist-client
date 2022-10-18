@@ -37,7 +37,7 @@
                     <div class="card-header white text-blue">Registered Members</div>
                     <div class="card-body ">
                         <div class="table-responsive">
-                            <table id="example2" class="table table-bordered table-hover data-tables" data-options='{ "paging": false "searching":false}'>
+                            <table id="example2" class="table table-bordered table-hover data-tables" data-options='{ "paging": "false", "searching":"false"}'>
                                 <thead>
                                     <tr>
                                         <th scope="col">S/N</th>
@@ -73,6 +73,7 @@
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="position:relative">
                                                 <a data-id="2" class="dropdown-item btn" @click="setUser(user)" v-b-modal.resetPassword>Reset Password</a>
+                                                <a class="dropdown-item btn" @click="setUser(user)" v-b-modal.removeUser>Delete</a>
                                             </div>
                                         </div>
                                     </td>
@@ -89,6 +90,15 @@
             <div v-if="!user">...Please wait</div>
             <reset-user-password v-else :user="user"/>
         </modal>
+
+        <modal :modalId="'removeUser'" :modalTitle="'Delete User'" :modalSize="'md'">
+            <div v-if="!user">...Please wait</div>
+            <div v-else>
+                <span>Are you sure you want delete this user?</span>
+                <button @click="deleteUser()" class="btn btn-danger">Delete</button>
+            </div>
+        </modal>
+
     </div>
 </template>
 <script>
@@ -128,7 +138,7 @@ export default {
     },
 
     methods:{
-        ...mapActions('registeredUserStore',['getUsers','search']),
+        ...mapActions('registeredUserStore',['getUsers','search','deleteMember']),
 
         searchUser(){
             this.search(this.form)
@@ -140,6 +150,10 @@ export default {
 
         setUser(user){
             this.user = user
+        },
+
+        deleteUser(){
+            this.deleteMember(this.user._id)
         }
     }
 }

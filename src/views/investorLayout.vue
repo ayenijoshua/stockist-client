@@ -86,7 +86,7 @@
                             </a>
                         </div>
                         <div class="d-none d-md-block">
-                            <h5 class="nav-title text-blue">Investor Dashboard</h5>
+                            <h5 class="nav-title text-blue">Welcome {{authUser.name}}</h5>
                         </div>
                     </div>
                 </div>
